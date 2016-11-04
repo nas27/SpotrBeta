@@ -20,6 +20,11 @@ namespace SpotrBeta.Controllers
             return View(db.Users.ToList());
         }
 
+        public ActionResult Follow()
+        {
+            //todo
+            return View();
+        }
 
         // GET: Users/Details/5
         public ActionResult Details(int? id)
