@@ -22,6 +22,7 @@ namespace SpotrBeta.Controllers
         }
 
         // GET: Workouts/Details/5
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -33,6 +34,8 @@ namespace SpotrBeta.Controllers
             {
                 return HttpNotFound();
             }
+            var exercises = db.Exercises.Where(x => x.Workout_Id == id).Include(x => x.Workout);
+            ViewBag.Exercises = exercises.ToList();
             return View(workout);
         }
 

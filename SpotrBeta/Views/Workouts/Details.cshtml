@@ -2,7 +2,11 @@
 
 @{
     ViewBag.Title = "Details";
+
+    var exer = ViewBag.Exercises;
 }
+
+
 
 <h2>Details</h2>
 
@@ -35,6 +39,17 @@
         </dd>
 
     </dl>
+</div>
+
+<div>
+    @foreach (var item in exer)
+    {
+        @item.Workout_Id;
+        @item.Name;
+        @item.NumReps;
+        @item.RestTime;
+        @item.Weight;
+    }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
