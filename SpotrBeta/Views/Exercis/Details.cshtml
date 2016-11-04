@@ -1,0 +1,66 @@
+﻿@model SpotrBeta.Models.Exercis
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Exercis</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Workout.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Workout.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumReps)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumReps)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RestTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RestTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
