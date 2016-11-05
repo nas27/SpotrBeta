@@ -15,7 +15,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.User.FirstName)
+            Trainer:
         </dt>
 
         <dd>
@@ -23,7 +23,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
+            @Html.DisplayNameFor(model => model.DateCreated):
         </dt>
 
         <dd>
@@ -31,7 +31,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+           Workout Name:
         </dt>
 
         <dd>
@@ -42,16 +42,17 @@
 </div>
 
 <div>
-    @foreach (var item in exer)
-    {
-        <div>
-            @item.Workout_Id
-            @item.Name
-            @item.NumReps
-            @item.RestTime
-            @item.Weight
-        </div>
-    }
+    <table style="border: 2px solid black; width: 80%;">        
+        @foreach (var item in exer)
+        {
+            <tr style="border: 1px solid black; padding: 5px;">
+                <td><b>Exercise: </b></td>  <td>@item.Name</td>                
+                <td><b>Weight: </b></td>     <td>@item.Weight</td> 
+                <td><b>Reps: </b></td>        <td>@item.NumReps</td>
+                <td><b>Rest Time: </b></td>  <td>@item.RestTime s</td>                
+            </tr>
+        }
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
