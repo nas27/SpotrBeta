@@ -17,7 +17,13 @@ namespace SpotrBeta.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            if (db.Users != null)
+            {
+                return View(db.Users.ToList());
+            }
+            return HttpNotFound();
+               
+          
         }
 
         public ActionResult Follow()

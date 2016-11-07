@@ -1,6 +1,13 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Segoe UI', Helvetica, sans-serif;
+    background-color: #DEDED3;
+}
+
+
+h2 {
+    font-family: 'Lao UI'
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +28,20 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.navbar-inverse { background-color: #DC0706 !important; }
+
+.navbar-header {
+   color: #d3d3d3;
+   font-size:large;
+}
+
+.nav.navbar-nav li a {
+   color: #dbd4ae;
+   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+
+.navbar-brand waves-effect waves-light {
+    color: #dbd4ae;
 }
