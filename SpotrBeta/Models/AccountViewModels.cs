@@ -5,9 +5,21 @@ namespace SpotrBeta.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
+       
         public string Email { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Country { get; set; }
+        public string SkillLevel { get; set; }
+        public bool isTrainer { get; set; }
+        public string Specialty { get; set; }
+
+        public int Weight { get; set; }
+        public int GoalWeight { get; set; }
+        public float Height { get; set; }
+
+        public int Age { get; set; }
     }
 
     public class ExternalLoginListViewModel

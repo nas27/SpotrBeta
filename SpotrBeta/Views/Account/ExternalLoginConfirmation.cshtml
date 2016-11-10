@@ -23,6 +23,94 @@
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.SkillLevel, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @{
+                    List<SelectListItem> SkillItems = new List<SelectListItem>();
+                    SkillItems.Add(new SelectListItem
+                    {
+                        Text = "Beginner",
+                        Value = "Beginner"
+                    });
+                    SkillItems.Add(new SelectListItem
+                    {
+                        Text = "Intermediate",
+                        Value = "Intermediate",
+                        Selected = true
+                    });
+                    SkillItems.Add(new SelectListItem
+                    {
+                        Text = "Advanced",
+                        Value = "Advanced"
+                    });
+                }
+
+                @Html.DropDownListFor(m => m.SkillLevel, SkillItems, "-- Select Skill Level --")
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.isTrainer, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(m => m.isTrainer, new { @checked = "checked" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Specialty, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Specialty, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Weight, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Weight, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.GoalWeight, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.GoalWeight, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Height, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Height, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Age, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

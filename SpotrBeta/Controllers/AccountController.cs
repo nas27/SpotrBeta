@@ -156,9 +156,9 @@ namespace SpotrBeta.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //Create User if Facebook Authentication succeeded 
+                    //Create User if MVC Authentication succeeded 
                     
-                    User FBuser = new User()
+                    User MVCuser = new User()
                     {
                         FirstName = model.FirstName,
                         LastName = model.LastName,
@@ -177,9 +177,7 @@ namespace SpotrBeta.Controllers
                     {
                         try
                         {
-                            //UsersController UC = new UsersController();
-                            //UC.Create(FBuser);
-                            db.Users.Add(FBuser);
+                            db.Users.Add(MVCuser);
                             db.SaveChanges();
                         }
                         catch (Exception ex)
@@ -407,6 +405,41 @@ namespace SpotrBeta.Controllers
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+
+                    //Create User if Facebook Authentication succeeded 
+
+                    User FBuser = new User()
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Email = model.Email,
+                        Age = model.Age,
+                        Weight = model.Weight,
+                        GoalWeight = model.GoalWeight,
+                        Height = model.Height,
+                        Country = model.Country,
+                        SkillLevel = model.SkillLevel,
+                        IsTrainer = model.isTrainer,
+                        Specialty = model.Specialty,
+                        Rating = 0
+                    };
+                    using (var db = new SpotrContext())
+                    {
+                        try
+                        {
+                            //UsersController UC = new UsersController();
+                            //UC.Create(FBuser);
+                            db.Users.Add(FBuser);
+                            db.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.ToString();
+                        }
+
+                    }
+
+
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
