@@ -53,14 +53,35 @@
     <div class="form-group">
         @Html.LabelFor(m => m.SkillLevel, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.SkillLevel, new { @class = "form-control" })
+            @{
+                List<SelectListItem> SkillItems = new List<SelectListItem>();
+                SkillItems.Add(new SelectListItem
+                {
+                    Text = "Beginner",
+                    Value = "Beginner"
+                });
+                SkillItems.Add(new SelectListItem
+                {
+                    Text = "Intermediate",
+                    Value = "Intermediate",
+                    Selected = true
+                });
+                SkillItems.Add(new SelectListItem
+                {
+                    Text = "Advanced",
+                    Value = "Advanced"
+                });
+            }
+
+            @Html.DropDownListFor(m => m.SkillLevel, SkillItems, "-- Select Skill Level --")
+
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.isTrainer, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.isTrainer, new { @class = "form-control" })
+            @Html.CheckBoxFor(m => m.isTrainer, new { @checked = "checked" })
         </div>
     </div>
 
