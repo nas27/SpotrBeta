@@ -17,7 +17,7 @@ namespace SpotrBeta.Controllers
         // GET: Exercis
         public ActionResult Index()
         {
-            var exercises = db.Exercises.Include(e => e.Workout);
+            var exercises = db.Exercises.Where(x => x.Workout.User.Email == User.Identity.Name).Include(e => e.Workout);
             return View(exercises.ToList());
         }
 
@@ -39,7 +39,9 @@ namespace SpotrBeta.Controllers
         // GET: Exercis/Create
         public ActionResult Create()
         {
-            ViewBag.Workout_Id = new SelectList(db.Workouts, "Id", "Name");
+            SelectList list = new SelectList(db.Workouts.OrderByDescending(x => x.DateCreated).Where(x => x.User.Email == User.Identity.Name), "Id", "Name");
+
+            ViewBag.Workout_Id = list.OrderByDescending(x => x.Value);
             return View();
         }
 

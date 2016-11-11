@@ -25,13 +25,11 @@
             </div>
             <div class="navbar-collapse collapse waves-effect waves-light">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Create A Workout!", "Create", "Workouts")</li>
+                    <li>@Html.ActionLink("Follow a Trainer", "Index", "Users")</li>
+                    <li>@Html.ActionLink("My Exercises", "Index", "Exercis")</li>
+                    <li>@Html.ActionLink("My Workouts", "Index", "Workouts")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Find a Trainer", "Index", "Users")</li>
-                    <li>@Html.ActionLink("Exercises", "Index", "Exercis")</li>
-                    <li>@Html.ActionLink("Workouts", "Index", "Workouts")</li>
-                   
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -1,0 +1,5 @@
+﻿@model  SpotrBeta.Models.ViewModels.ExerciseViewModel
+<fieldset>
+    @Html.HiddenFor(model => model.Id)
+    @Html.CheckBoxFor(model => model.selected) - @Html.DisplayFor(model => model.Name)
+</fieldset>

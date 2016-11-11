@@ -19,7 +19,7 @@ namespace SpotrBeta.Controllers
         {
             if (db.Users != null)
             {
-                return View(db.Users.ToList());
+                return View(db.Users.Where(x => x.IsTrainer).ToList());
             }
             return HttpNotFound();
                
