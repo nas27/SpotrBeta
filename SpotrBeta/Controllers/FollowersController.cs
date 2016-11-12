@@ -10,114 +10,107 @@ using SpotrBeta.Models;
 
 namespace SpotrBeta.Controllers
 {
-    public class ExercisController : Controller
+    public class FollowersController : Controller
     {
         private SpotrContext db = new SpotrContext();
 
-        // GET: Exercis
+        // GET: Followers
         public ActionResult Index()
         {
-            var exercises = db.Exercises.Where(x => x.Workout.User.Email == User.Identity.Name).Include(e => e.Workout);
-            return View(exercises.ToList());
+            return View(db.Followers.ToList());
         }
 
-        // GET: Exercis/Details/5
+        // GET: Followers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Exercis exercis = db.Exercises.Find(id);
-            if (exercis == null)
+            Follower follower = db.Followers.Find(id);
+            if (follower == null)
             {
                 return HttpNotFound();
             }
-            return View(exercis);
+            return View(follower);
         }
 
-        // GET: Exercis/Create
+        // GET: Followers/Create
         public ActionResult Create()
         {
-            SelectList list = new SelectList(db.Workouts.Where(x => x.User.Email == User.Identity.Name), "Id", "Name");
-
-            ViewBag.Workout_Id = list.OrderByDescending(x => x.Value);
             return View();
         }
 
-        // POST: Exercis/Create
+        // POST: Followers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,NumReps,RestTime,Weight,Workout_Id")] Exercis exercis)
+        public ActionResult Create([Bind(Include = "ID,UserId,FollowerId")] Follower follower)
         {
             if (ModelState.IsValid)
             {
-                db.Exercises.Add(exercis);
+                db.Followers.Add(follower);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Workout_Id = new SelectList(db.Workouts, "Id", "Name", exercis.Workout_Id);
-            return View(exercis);
+            return View(follower);
         }
 
-        // GET: Exercis/Edit/5
+        // GET: Followers/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Exercis exercis = db.Exercises.Find(id);
-            if (exercis == null)
+            Follower follower = db.Followers.Find(id);
+            if (follower == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Workout_Id = new SelectList(db.Workouts, "Id", "Name", exercis.Workout_Id);
-            return View(exercis);
+            return View(follower);
         }
 
-        // POST: Exercis/Edit/5
+        // POST: Followers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,NumReps,RestTime,Weight,Workout_Id")] Exercis exercis)
+        public ActionResult Edit([Bind(Include = "ID,UserId,FollowerId")] Follower follower)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(exercis).State = EntityState.Modified;
+                db.Entry(follower).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Workout_Id = new SelectList(db.Workouts, "Id", "Name", exercis.Workout_Id);
-            return View(exercis);
+            return View(follower);
         }
 
-        // GET: Exercis/Delete/5
+        // GET: Followers/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Exercis exercis = db.Exercises.Find(id);
-            if (exercis == null)
+            Follower follower = db.Followers.Find(id);
+            if (follower == null)
             {
                 return HttpNotFound();
             }
-            return View(exercis);
+            return View(follower);
         }
 
-        // POST: Exercis/Delete/5
+        // POST: Followers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Exercis exercis = db.Exercises.Find(id);
-            db.Exercises.Remove(exercis);
+            Follower follower = db.Followers.Find(id);
+            db.Followers.Remove(follower);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

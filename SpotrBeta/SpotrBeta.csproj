@@ -199,6 +199,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ExercisController.cs" />
+    <Compile Include="Controllers\FollowersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -208,6 +209,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Exercis.cs" />
+    <Compile Include="Models\Follower.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SpotrContext.cs" />
@@ -295,6 +297,12 @@
     <Content Include="Views\Exercis\Edit.cshtml" />
     <Content Include="Views\Exercis\Index.cshtml" />
     <Content Include="Views\Workouts\EditorTemplates\ExerciseViewModel.cshtml" />
+    <Content Include="Views\Users\Follow.cshtml" />
+    <Content Include="Views\Followers\Create.cshtml" />
+    <Content Include="Views\Followers\Delete.cshtml" />
+    <Content Include="Views\Followers\Details.cshtml" />
+    <Content Include="Views\Followers\Edit.cshtml" />
+    <Content Include="Views\Followers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

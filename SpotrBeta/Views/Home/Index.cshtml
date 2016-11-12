@@ -1,5 +1,10 @@
 ﻿@{
     ViewBag.Title = "Home";
+
+    var userFollowed = ViewBag.UserFollowed;
+    var allWorkouts = ViewBag.AllWorkouts;
+    var allUsers = ViewBag.AllUsers;
+
 }
 
 <div class="jumbotron">
@@ -25,7 +30,27 @@
             and enjoying the social aspect, too.
             See more benefits <a href="http://greatist.com/fitness/13-awesome-mental-health-benefits-exercise">here</a>!
         </p>
-
-
     </div>
+
+    @foreach (var follower in userFollowed)
+    {
+
+        foreach (var userInfo in allUsers)
+        {
+            if (follower.UserId == userInfo.Id)
+            {
+                <p>@userInfo.FirstName @userInfo.LastName</p>
+                foreach (var item in allWorkouts)
+                {
+                    if (item.User_Id == userInfo.Id)
+                    {
+                        @item.Name
+                        @Html.ActionLink("Details", "Details", "Workouts",new { id = item.Id }, null)
+                    }
+                }
+
+            }
+        }
+    }
+    
 </div>

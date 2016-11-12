@@ -13,6 +13,7 @@ namespace SpotrBeta.Models
         }
 
         public virtual DbSet<Exercis> Exercises { get; set; }
+        public virtual DbSet<Follower> Followers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Workout> Workouts { get; set; }
 

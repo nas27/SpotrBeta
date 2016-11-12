@@ -19,7 +19,7 @@ namespace SpotrBeta.Controllers
         {
             if (db.Users != null)
             {
-                return View(db.Users.Where(x => x.IsTrainer).ToList());
+                return View(db.Users.ToList());
             }
             return HttpNotFound();
                
@@ -28,8 +28,26 @@ namespace SpotrBeta.Controllers
 
         public ActionResult Follow()
         {
-            //todo
+            ViewBag.AllTrainers = db.Users.ToList();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Follow(int trainerNum)
+        {
+            User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+            Follower temp = new Follower();
+
+            Random r = new Random();
+            int rInt = r.Next(0, 100);
+
+            temp.ID = temp.ID + r.Next(0, 9999);
+            temp.FollowerId = currentUser.Id;
+            temp.UserId = trainerNum;
+
+            db.Followers.Add(temp);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Users/Details/5
