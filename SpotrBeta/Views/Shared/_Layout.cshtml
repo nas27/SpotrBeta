@@ -9,9 +9,9 @@
 
 </head>
 <body>
-    <div class="navbar-brand navbar-inverse navbar-fixed-bottom">
-        <div class="container">
-            <div class="navbar-header">
+    <div class="navbar navbar-default navbar-static-top">
+     
+            <div class="navbar-brand navbar-header">
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     
@@ -19,10 +19,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img class="logo" src="@Url.Content("~/Images/mini_logo.png")" />
-                @Html.ActionLink("SpotR", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                
-            </div>
+                <a href="~/Views/Home/Index.cshtml"><img class="logo" src="@Url.Content("~/Images/mini_logo.png")" /></a>
+
+
+
+
+
+</div>
             <div class="navbar-collapse collapse waves-effect waves-light">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Create A Workout!", "Create", "Workouts")</li>
@@ -30,15 +33,17 @@
                     <li>@Html.ActionLink("My Exercises", "Index", "Exercis")</li>
                     <li>@Html.ActionLink("My Workouts", "Index", "Workouts")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
+                   
                 </ul>
                 @Html.Partial("_LoginPartial")
+               
             </div>
         </div>
-    </div>
+    
     <div class="container body-content">
+        
         @RenderBody()
         <hr />
-
     </div>
 
     @Scripts.Render("~/bundles/jquery")

@@ -6,8 +6,22 @@
 }
 
 
+
+.nav .navbar-nav{
+    color:blanchedalmond;
+}
+
 h2 {
     font-family: 'Lao UI'
+}
+
+img {
+    padding-top:10px;
+}
+
+.nav{
+    width:100%;
+  
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -30,18 +44,20 @@ textarea {
     max-width: 280px;
 }
 
-.navbar-inverse { background-color: #DC0706 !important; }
 
 .navbar-header {
-   color: #d3d3d3;
+  
    font-size:large;
 }
 
 .nav.navbar-nav li a {
-   color: #dbd4ae;
-   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:14px;
+ 
+   font-family:Arial, Helvetica, sans-serif;
  }
 
-.navbar-brand waves-effect waves-light {
-    color: #dbd4ae;
+
+.jumbotron {
+    position: relative;
 }
+
