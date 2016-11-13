@@ -16,6 +16,8 @@
 
 
     <h2>Workout Feed:</h2>
+    <h4 class="caption">See what you and your friends are doing!</h4>
+<div class="well-lg">
     @foreach (var follower in userFollowed)
     {
 
@@ -23,17 +25,26 @@
         {
             if (follower.UserId == userInfo.Id)
             {
-                <p>@userInfo.FirstName @userInfo.LastName</p>
+
+
+
+                <section><span class="glyphicon glyphicon-user"></span> @userInfo.FirstName @userInfo.LastName has posted the workout:</section>
+
                 foreach (var item in allWorkouts)
                 {
+
                     if (item.User_Id == userInfo.Id)
                     {
-                        @item.Name
-                        @Html.ActionLink("Details", "Details", "Workouts",new { id = item.Id }, null)
+                        <div class="h5">@item.Name <i>@Html.ActionLink("View Workout Details", "Details", "Workouts", new { id = item.Id }, null)</i> </div>
+                        
                     }
+
                 }
 
             }
         }
     }
+</div>
+
+
     

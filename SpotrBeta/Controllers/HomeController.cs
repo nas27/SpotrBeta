@@ -14,18 +14,29 @@ namespace SpotrBeta.Controllers
 
         public ActionResult Index()
         {
-            User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
-            ViewBag.UserFollowed = db.Followers.Where(x => x.FollowerId == currentUser.Id);
-            ViewBag.AllUsers = db.Users.ToList();
+         try
+            {
+                User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
 
-            ViewBag.AllWorkouts = db.Workouts.ToList();
+                ViewBag.UserFollowed = db.Followers.Where(x => x.FollowerId == currentUser.Id);
+                ViewBag.AllUsers = db.Users.ToList();
+
+                ViewBag.AllWorkouts = db.Workouts.ToList();
+            }   
+            catch(InvalidOperationException ex)
+            {
+                ex.ToString();
+            }
+                
+         
+            
             
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "What is Spotr";
 
             return View();
         }

@@ -40,11 +40,14 @@ namespace SpotrBeta.Controllers
 
             //Random r = new Random();
             //int rInt = r.Next(0, 100);
-
+            do
+            {
+                temp.ID = temp.ID + 1;
+            } while (db.Followers.Find(temp.ID) != null);
 
 
             //temp.ID = temp.ID + r.Next(0, 9999);
-            temp.ID = temp.ID + 1;
+            //temp.ID = temp.ID + 1;
             temp.FollowerId = currentUser.Id;
             temp.UserId = trainerNum;
 
