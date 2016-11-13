@@ -38,10 +38,13 @@ namespace SpotrBeta.Controllers
             User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
             Follower temp = new Follower();
 
-            Random r = new Random();
-            int rInt = r.Next(0, 100);
+            //Random r = new Random();
+            //int rInt = r.Next(0, 100);
 
-            temp.ID = temp.ID + r.Next(0, 9999);
+
+
+            //temp.ID = temp.ID + r.Next(0, 9999);
+            temp.ID = temp.ID + 1;
             temp.FollowerId = currentUser.Id;
             temp.UserId = trainerNum;
 

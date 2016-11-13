@@ -11,27 +11,11 @@
     <img align="middle" src="~/Images/splash_page.png" />
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Post Workouts!</h2>
-        <p>
-            Create personalized workouts where you can track your sets and repetitions. See your progress too.
-        </p>
-    </div>
-    <div class="col-md-4">
-        <h2>Follow others!</h2>
-        <p>Wouldn't you like to know what Justin Bieber does? Now you can find out.</p>
+<div class="alert">@Html.Partial("_LoginPartial")</div>
 
-    </div>
-    <div class="col-md-4">
-        <h2>Feel Better About Yourself!</h2>
-        <p>
-            There are many awesome benefits to exercise such as boosting you mood, feeling and looking good,
-            and enjoying the social aspect, too.
-            See more benefits <a href="http://greatist.com/fitness/13-awesome-mental-health-benefits-exercise">here</a>!
-        </p>
-    </div>
 
+
+    <h2>Workout Feed:</h2>
     @foreach (var follower in userFollowed)
     {
 
@@ -53,4 +37,3 @@
         }
     }
     
-</div>
