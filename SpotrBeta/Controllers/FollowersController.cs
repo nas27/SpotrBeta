@@ -10,6 +10,7 @@ using SpotrBeta.Models;
 
 namespace SpotrBeta.Controllers
 {
+    [Authorize]
     public class FollowersController : Controller
     {
         private SpotrContext db = new SpotrContext();

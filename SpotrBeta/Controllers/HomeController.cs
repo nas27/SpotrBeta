@@ -20,7 +20,7 @@ namespace SpotrBeta.Controllers
 
                 ViewBag.UserFollowed = db.Followers.Where(x => x.FollowerId == currentUser.Id);
                 ViewBag.AllUsers = db.Users.ToList();
-
+                ViewBag.AllExercises = db.Exercises.ToList();
                 ViewBag.AllWorkouts = db.Workouts.ToList();
             }   
             catch(InvalidOperationException ex)
@@ -34,6 +34,7 @@ namespace SpotrBeta.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult About()
         {
             ViewBag.Message = "What is Spotr";

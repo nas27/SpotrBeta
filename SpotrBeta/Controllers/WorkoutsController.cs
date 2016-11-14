@@ -10,6 +10,7 @@ using SpotrBeta.Models;
 
 namespace SpotrBeta.Controllers
 {
+    [Authorize]
     public class WorkoutsController : Controller
     {
         private SpotrContext db = new SpotrContext();

@@ -4,6 +4,7 @@
     var userFollowed = ViewBag.UserFollowed;
     var allWorkouts = ViewBag.AllWorkouts;
     var allUsers = ViewBag.AllUsers;
+    var allExercises = ViewBag.AllExercises;
 
 }
 
@@ -17,7 +18,7 @@
 
     <h2>Workout Feed:</h2>
     <h4 class="caption">See what you and your friends are doing!</h4>
-<div class="well-lg">
+<div class="jumbotron">
     @foreach (var follower in userFollowed)
     {
 
@@ -28,18 +29,27 @@
 
 
 
-                <section><span class="glyphicon glyphicon-user"></span> @userInfo.FirstName @userInfo.LastName has posted the workout:</section>
+                <section><span class="glyphicon glyphicon-user"></span> <strong>@userInfo.FirstName @userInfo.LastName</strong> has posted the workout:</section>
 
                 foreach (var item in allWorkouts)
                 {
+        
+                        if (item.User_Id == userInfo.Id)
+                        {
 
-                    if (item.User_Id == userInfo.Id)
-                    {
-                        <div class="h5">@item.Name <i>@Html.ActionLink("View Workout Details", "Details", "Workouts", new { id = item.Id }, null)</i> </div>
+                        <div class="h5"><p class="badge">@item.Name</p><sub>@item.DateCreated</sub></div>
+                        foreach (var exItem in allExercises)
+                        {
+                            if (item.Id == exItem.Workout_Id)
+                            {
+                                <i>@Html.ActionLink("View Workout Details", "Details", "Exercis", new { id = exItem.Id }, null)</i>
+                            }
+                        }
                         
+                        }
                     }
 
-                }
+                
 
             }
         }
