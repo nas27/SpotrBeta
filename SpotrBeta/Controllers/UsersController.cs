@@ -40,21 +40,44 @@ namespace SpotrBeta.Controllers
 
             //Random r = new Random();
             //int rInt = r.Next(0, 100);
+            
+            //temp.ID = temp.ID + r.Next(0, 9999);
+
+            //see if this id exists in the database - if yes, we must select a new one 
             do
             {
                 temp.ID = temp.ID + 1;
             } while (db.Followers.Find(temp.ID) != null);
-
-
-            //temp.ID = temp.ID + r.Next(0, 9999);
-            //temp.ID = temp.ID + 1;
+            
             temp.FollowerId = currentUser.Id;
             temp.UserId = trainerNum;
 
-            db.Followers.Add(temp);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            //Determine if the trainer they're trying to follow is already on the list 
+            ViewBag.isFollowed = db.Followers.Where(x => x.FollowerId == currentUser.Id);
+            bool isDuplicate = false;
+            foreach (var item in ViewBag.isFollowed)
+            {
+                if (temp.UserId == item.UserId)
+                {
+                    isDuplicate = true;
+                }
+            }
+            
+            if (isDuplicate == false)
+            {
+                //not already existing
+                db.Followers.Add(temp);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                // user is already following this trainer so do not add to db again
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
+
 
         // GET: Users/Details/5
         public ActionResult Details(int? id)
