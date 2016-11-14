@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SpotrBeta.Models;
+using System.Windows.Forms;
 
 namespace SpotrBeta.Controllers
 {
@@ -60,9 +61,7 @@ namespace SpotrBeta.Controllers
                 if (temp.UserId == item.UserId)
                 {
                     isDuplicate = true;
-
                 }
-
             }
             
             if (isDuplicate == false)
@@ -75,11 +74,11 @@ namespace SpotrBeta.Controllers
             else
             {
                 // user is already following this trainer so do not add to db again
+                //String ErrorMessage = "You are already following this User!";
+                //MessageBox.Show(ErrorMessage, "Could not add User:");
                 return RedirectToAction("Follow", "Users");
-                //return Content("<script language='javascript' type='text/javascript'>alert('Already Following that User!');</script>");
             }
-           
-
+            
         }
 
 
