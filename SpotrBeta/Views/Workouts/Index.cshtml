@@ -1,22 +1,22 @@
 ﻿@model IEnumerable<SpotrBeta.Models.Workout>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Workouts you created";
 }
 
-<h2>Index</h2>
+<h2>Your Workouts</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 <table class="table">
     <tr>
         @*<th>
             @Html.DisplayNameFor(model => model.User.FirstName)
         </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
+        @*<th>
+        @Html.DisplayNameFor(model => model.DateCreated)
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -28,15 +28,16 @@
         @*<td>
             @Html.DisplayFor(modelItem => item.User.FirstName)
         </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
+        @*<td>
+        @Html.DisplayFor(modelItem => item.DateCreated)
+    </td>*@
+        
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @*Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
