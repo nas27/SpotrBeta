@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SpotrBeta.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private SpotrContext db = new SpotrContext();

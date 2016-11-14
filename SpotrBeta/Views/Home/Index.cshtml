@@ -60,24 +60,26 @@
 
 
 
-
+@if (User.Identity.IsAuthenticated)
+{
     <h2>Workout Feed:</h2>
     <h4 class="caption">See what you and your friends are doing!</h4>
+}
 <div class="jumbotron">
-    @foreach (var follower in userFollowed)
+    @if (User.Identity.IsAuthenticated)
     {
-
-        foreach (var userInfo in allUsers)
+        foreach (var follower in userFollowed)
         {
-            if (follower.UserId == userInfo.Id)
+
+            foreach (var userInfo in allUsers)
             {
-
-
+                if (follower.UserId == userInfo.Id)
+                {
 
                 <section><span class="glyphicon glyphicon-user"></span> <strong>@userInfo.FirstName @userInfo.LastName</strong> has posted the workout:</section>
 
-                foreach (var item in allWorkouts)
-                {
+                        foreach (var item in allWorkouts)
+                    {
         
                         if (item.User_Id == userInfo.Id)
                         {
@@ -92,16 +94,15 @@
                                 counter += 1;   
                                 string exerciseName = "Exercise " + counter;
                                 <i>@Html.ActionLink(exerciseName, "Details", "Exercis", new { id = exItem.Id }, null)</i>
+                                }
+
+
                             }
 
-                           
                         }
-
                     }
+                
                 }
-
-
-
             }
         }
     }
