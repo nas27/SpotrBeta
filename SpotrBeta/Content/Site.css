@@ -5,7 +5,17 @@
     background-color: #DEDED3;
 }
 
+i{
+    color:aliceblue;
+}
 
+a:link  {
+   color:#620000;
+   
+}
+a:visited{
+    color:#801111;
+}
 
 .nav .navbar-nav{
     color:blanchedalmond;

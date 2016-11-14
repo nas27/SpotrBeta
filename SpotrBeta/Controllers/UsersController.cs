@@ -60,7 +60,9 @@ namespace SpotrBeta.Controllers
                 if (temp.UserId == item.UserId)
                 {
                     isDuplicate = true;
+
                 }
+
             }
             
             if (isDuplicate == false)
@@ -73,9 +75,11 @@ namespace SpotrBeta.Controllers
             else
             {
                 // user is already following this trainer so do not add to db again
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Follow", "Users");
+                //return Content("<script language='javascript' type='text/javascript'>alert('Already Following that User!');</script>");
             }
-            
+           
+
         }
 
 

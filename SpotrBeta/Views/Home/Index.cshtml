@@ -89,10 +89,12 @@
 
                             if (item.Id == exItem.Workout_Id)
                             {
-                                counter += 1;
+                                counter += 1;   
                                 string exerciseName = "Exercise " + counter;
                                 <i>@Html.ActionLink(exerciseName, "Details", "Exercis", new { id = exItem.Id }, null)</i>
                             }
+
+                           
                         }
 
                     }
