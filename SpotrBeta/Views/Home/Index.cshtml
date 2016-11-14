@@ -83,18 +83,22 @@
                         {
 
                         <div class="h5"><p class="badge">@item.Name</p><sub>@item.DateCreated</sub></div>
+                        int counter = 0;
                         foreach (var exItem in allExercises)
                         {
+
                             if (item.Id == exItem.Workout_Id)
                             {
-                                <i>@Html.ActionLink("View Workout Details", "Details", "Exercis", new { id = exItem.Id }, null)</i>
+                                counter += 1;
+                                string exerciseName = "Exercise " + counter;
+                                <i>@Html.ActionLink(exerciseName, "Details", "Exercis", new { id = exItem.Id }, null)</i>
                             }
                         }
-                        
-                        }
-                    }
 
-                
+                    }
+                }
+
+
 
             }
         }
