@@ -5,13 +5,19 @@
     background-color: #DEDED3;
 }
 
+.form-control{
+    border-color:crimson;   
+}
+
+
 i{
     color:aliceblue;
 }
 
 a:link  {
    color:#620000;
-   
+   background-color:rgba(212, 211, 199, 0.79);
+ 
 }
 a:visited{
     color:#801111;
@@ -19,6 +25,10 @@ a:visited{
 
 .nav .navbar-nav{
     color:blanchedalmond;
+}
+h1{ 
+    font-family:Exo;
+    color:#383737;
 }
 
 h2 {

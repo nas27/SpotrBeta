@@ -17,13 +17,17 @@ namespace SpotrBeta.Controllers
          try
             {
                 User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
-
-                ViewBag.UserFollowed = db.Followers.Where(x => x.FollowerId == currentUser.Id);
-                ViewBag.AllUsers = db.Users.ToList();
-                ViewBag.AllExercises = db.Exercises.ToList();
-                ViewBag.AllWorkouts = db.Workouts.ToList();
-                ViewBag.Weight  = currentUser.Weight;
-                ViewBag.Height = currentUser.Height;
+                //avoid nullobjectreference exception
+                if (currentUser != null)
+                {
+                    ViewBag.UserFollowed = db.Followers.Where(x => x.FollowerId == currentUser.Id);
+                    ViewBag.AllUsers = db.Users.ToList();
+                    ViewBag.AllExercises = db.Exercises.ToList();
+                    ViewBag.AllWorkouts = db.Workouts.ToList();
+                    ViewBag.Weight = currentUser.Weight;
+                    ViewBag.Height = currentUser.Height;
+                }
+                
 
 
             }   
