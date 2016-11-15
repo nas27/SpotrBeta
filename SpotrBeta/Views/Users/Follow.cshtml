@@ -4,15 +4,26 @@
     var allTrainers = ViewBag.AllTrainers;
 }
 
+@*<form asp-controller="UserSort" asp-action="Follow" method="get">
+    <p>
+        User: <input type="text" name="SearchString">
+        <input type="submit" name="FindTrainer" /> 
+    </p>
+</form>*@
+
+
 @foreach (var item in allTrainers)
 {
     <div class="form-group">
         <form action="/Users/Follow" method="post">
-            @item.FirstName @item.LastName
+            
+            @item.FirstName @item.LastName  Rating: @item.Rating
             <input style="display:none" type="number" value="@item.Id" name="trainerNum" />
             <input type="submit" value="Follow">
         </form>
     </div>
+
+
 }
 
 @*<div class="form-group">

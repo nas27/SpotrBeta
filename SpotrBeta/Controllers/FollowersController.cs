@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SpotrBeta.Models;
+using System.Threading.Tasks;
 
 namespace SpotrBeta.Controllers
 {
@@ -20,6 +21,8 @@ namespace SpotrBeta.Controllers
         {
             return View(db.Followers.ToList());
         }
+
+        
 
         // GET: Followers/Details/5
         public ActionResult Details(int? id)

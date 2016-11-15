@@ -23,9 +23,22 @@ namespace SpotrBeta.Controllers
                 return View(db.Users.ToList());
             }
             return HttpNotFound();
-               
-          
+
+
         }
+        //[HttpGet]
+        //public ActionResult Follow(string SearchString)
+        //{
+        //    var users = from m in db.Users
+        //                select m;
+        //    if (!String.IsNullOrEmpty(SearchString))
+        //    {
+        //        users = users.Where(s => s.FirstName.Contains(SearchString));
+        //    }
+
+        //    return View(users.ToList());
+
+        //}
 
         public ActionResult Follow()
         {
