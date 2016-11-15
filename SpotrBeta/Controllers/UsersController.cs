@@ -18,27 +18,44 @@ namespace SpotrBeta.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            if (db.Users != null)
+            try
             {
-                return View(db.Users.ToList());
+                User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+                if (currentUser != null)
+                {
+                    ViewBag.CurrentUserId = currentUser.Id;
+                }
+                return View(currentUser);
+                
+
+            }   
+            catch(InvalidOperationException ex)
+            {
+                ex.ToString();
             }
+
+           
             return HttpNotFound();
 
 
         }
-        //[HttpGet]
-        //public ActionResult Follow(string SearchString)
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index([Bind(Include = "Id,FirstName,LastName,Email,Age,Weight,GoalWeight,Height,Country,SkillLevel,IsTrainer,Specialty,Rating")] User user)
         //{
-        //    var users = from m in db.Users
-        //                select m;
-        //    if (!String.IsNullOrEmpty(SearchString))
+        //    if (ModelState.IsValid)
         //    {
-        //        users = users.Where(s => s.FirstName.Contains(SearchString));
+        //        db.Entry(user).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
         //    }
-
-        //    return View(users.ToList());
-
+        //    return View(user);
         //}
+
+
+
 
         public ActionResult Follow()
         {
@@ -153,7 +170,7 @@ namespace SpotrBeta.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,Age,Weight,GoalWeight,Height,Country,SkillLevel,IsTrainer,Specialty,Rating")] User user)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,Age,Weight,GoalWeight,Height,Country,SkillLevel,IsTrainer,Specialty")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -162,7 +179,7 @@ namespace SpotrBeta.Controllers
                 return RedirectToAction("Index");
             }
             return View(user);
-        }
+    }
 
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)

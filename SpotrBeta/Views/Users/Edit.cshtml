@@ -33,6 +33,9 @@
             </div>
         </div>
 
+        @*cannot edit email as this is your identity with the site*@
+        @*CDC FIX THIS^ currently it doesn't work, it must be EditorFor or the modelstate becomes invalid with DisplayFor(email is null)*@
+            
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -90,8 +93,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IsTrainer, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelForModel("Apply to be a Trainer:", htmlAttributes: new { @class = "control-label col-md-2" }) 
             <div class="col-md-10">
+               
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsTrainer)
                     @Html.ValidationMessageFor(model => model.IsTrainer, "", new { @class = "text-danger" })
@@ -107,10 +111,13 @@
             </div>
         </div>
 
+        
+            @*cannot edit rating anymore- this is determined by user feedback*@
+
         <div class="form-group">
             @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DisplayFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -124,7 +131,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Profile", "Index")
 </div>
 
 @section Scripts {
