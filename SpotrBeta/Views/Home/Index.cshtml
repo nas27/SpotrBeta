@@ -27,24 +27,28 @@
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
             <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
         </ol>
 
         <!-- Image Slide Wrapper -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="~/Images/lift.jpg" alt="Lifting" width="380" height="300">
+                <img src="~/Images/lift.jpg" alt="Lifting" width="350" height="270">
             </div>
 
             <div class="item">
-                <img src="~/Images/spotter.jpeg" alt="WorkoutBuddy" width="380" height="300">
+                <img src="~/Images/holding_phone.jpg" alt="UsingSpotr" width="350" height="270">
             </div>
 
             <div class="item">
-                <img src="~/Images/treadmill.jpg" alt="Running" width="380" height="300">
+                <img src="~/Images/treadmill.jpg" alt="Running" width="350" height="270">
             </div>
 
             <div class="item">
-                <img src="~/Images/kettle.jpg" alt="KettleBell" width="380" height="300">
+                <img src="~/Images/kettle.jpg" alt="KettleBell" width="350" height="270">
+            </div>
+            <div class="item">
+                <img src="~/Images/spotter.jpeg" alt="WorkoutBuddy" width="350" height="270">
             </div>
         </div>
 
@@ -69,6 +73,7 @@
     <h4 class="caption">See what you and your friends are doing!</h4>
 
     //double b = (double)(weight / height)/(height);
+    
     int val = weight / (int)height;
     int fVal = val / (int)height;
     <section class="text-danger"><span class="glyphicon glyphicon-heart"></span><b> Your Body Mass Index(BMI) is: </b>@Html.DisplayName(fVal.ToString())</section>

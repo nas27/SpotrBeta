@@ -229,6 +229,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\holding_phone.jpg" />
     <Content Include="Images\icon_barbells.png" />
     <Content Include="Images\kettle.jpg" />
     <Content Include="Images\lift.jpg" />
