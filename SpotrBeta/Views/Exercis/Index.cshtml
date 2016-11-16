@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Exercise page";
+    var prevWorkout = "";
+    var currentWorkout = "";
 }
 
 <h2>View your exercises</h2>
@@ -33,9 +35,13 @@
     </tr>
 
 @foreach (var item in Model) {
+    currentWorkout = item.Workout.Name;
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Workout.Name)
+            @if (currentWorkout != prevWorkout)
+            {
+                @Html.DisplayFor(modelItem => item.Workout.Name)
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -57,10 +63,9 @@
             @*Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
-        <td>
-            @Html.ActionLink("Add another exercise", "Create", "Exercis")
-        </td>
     </tr>
+    prevWorkout = item.Workout.Name;
 }
 
 </table>
+@Html.ActionLink("Add another exercise", "Create", "Exercis")
