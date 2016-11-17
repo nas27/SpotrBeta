@@ -77,9 +77,10 @@
 
         </div>
     </div>
-
     <div class="form-group">
-        @Html.LabelFor(m => m.isTrainer, new { @class = "col-md-2 control-label" })
+        <div class="col-md-2 control-label"><b>@Html.DisplayName("Request Trainer Status")</b></div>
+
+        @*Html.LabelFor(m => m.isTrainer, new { @class = "col-md-2 control-label" })*@
         <div class="col-md-10">
             @Html.CheckBoxFor(m => m.isTrainer, new { @checked = "checked" })
         </div>

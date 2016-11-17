@@ -401,17 +401,31 @@ namespace SpotrBeta.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                //Create User if Facebook Authentication succeeded 
+                var externalIdentity = HttpContext.GetOwinContext().Authentication.GetExternalIdentityAsync(DefaultAuthenticationTypes.ExternalCookie);
+
+                var fullName = externalIdentity.Result.GetUserName();
+                int space = fullName.IndexOf(' ');
+                string firstName = fullName.Substring(0, space);
+                string lastName = fullName.Substring(space);
+
+                //CDC not working with basic permissions?!?
+                //var email = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+                //var firstName = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == "urn:facebook:first_name").Value;
+                //var lastName = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == "urn:facebook:last_name").Value;
+                //var country = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == "urn:facebook:country").Value;
+                
+                var user = new ApplicationUser { UserName = fullName, Email = model.Email};
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
 
-                    //Create User if Facebook Authentication succeeded 
+                   
 
                     User FBuser = new User()
                     {
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
+                        FirstName = firstName,
+                        LastName = lastName,
                         Email = model.Email,
                         Age = model.Age,
                         Weight = model.Weight,
