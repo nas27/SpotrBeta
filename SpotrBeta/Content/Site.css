@@ -6,17 +6,61 @@
 }
 
 .form-control{
-    border-color:crimson;   
+    border-color:crimson;  
+    border-radius: 0 !important;
+    background-color:#ffecd4;
 }
 
+h6{
+    color:#101010;
+    font-family:'Microsoft YaHei UI';
+    font-size:large;
+}
+
+dt{
+    color:#960000;
+}
+
+h4{
+    color:crimson;    
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input.btn-group-justified{
+    box-shadow:none;
+    text-shadow:none;
+    border-radius:10px;
+    font-family:'Lao UI';
+    color:#FFFFFF;
+    background-color:#890000;
+}
+
+input.btn-group-justified pill-content{
+    background-color:#fcc7d1;
+    color:aqua;
+    background-color:blueviolet;
+}
+
+
+label control-label col-md-2{
+    color:red;
+}
+
+
+* {
+  
+}
 
 i{
-    color:aliceblue;
+    color:#4a0000;
 }
+
+
+
 
 a:link  {
    color:#620000;
-   background-color:rgba(212, 211, 199, 0.79);
+   background-color:rgba(222, 222, 211, 0.69);
  
 }
 a:visited{

@@ -59,8 +59,19 @@ namespace SpotrBeta.Controllers
 
         public ActionResult Follow()
         {
-            ViewBag.AllTrainers = db.Users.ToList();
-            return View();
+            try
+            {
+
+                ViewBag.AllTrainers = db.Users.ToList();
+                return View();
+            }
+            catch(System.Data.Entity.Core.EntityCommandExecutionException ex)
+            {
+                ModelState.AddModelError("Error", ex.Message);
+                return View(db);
+            }
+                
+
         }
 
         [HttpPost]

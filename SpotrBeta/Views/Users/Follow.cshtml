@@ -14,12 +14,11 @@
 
 @foreach (var item in allTrainers)
 {
-    <div class="form-group">
-        <form action="/Users/Follow" method="post">
-            
-            @item.FirstName @item.LastName  Rating: @item.Rating
-            <input style="display:none" type="number" value="@item.Id" name="trainerNum" />
-            <input type="submit" value="Follow">
+    <div class="form-group col-lg-offset-1">
+        <form action="/Users/Follow" method="post">         
+            <h4>@item.FirstName @item.LastName</h4><div class="well-sm caption"><span class="glyphicon glyphicon-bookmark"></span><h6>Rating: @item.Rating</h6></div>
+          <input style="display:none" type="number" value="@item.Id" name="trainerNum" />
+            <input class="btn-group-justified pill-content danger" type="submit" value="Follow">
         </form>
     </div>
 
