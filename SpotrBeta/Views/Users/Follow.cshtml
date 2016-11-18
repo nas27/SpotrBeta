@@ -2,6 +2,8 @@
     ViewBag.Title = "Follow";
 
     var allTrainers = ViewBag.AllTrainers;
+    var CurrentTrainers = ViewBag.CurrentTrainers;
+    var checkCreated = false;
 }
 
 @*<form asp-controller="UserSort" asp-action="Follow" method="get">
@@ -22,11 +24,30 @@
 
     @foreach (var item in allTrainers)
     {
+        checkCreated = false;
         <div class="form-group col-lg-offset-1">
             <form action="/Users/Follow" method="post">
                 <h4>@item.FirstName @item.LastName</h4><div class="well-sm caption"><span class="glyphicon glyphicon-bookmark"></span><h6>Rating: @item.Rating</h6></div>
                 <input style="display:none" type="number" value="@item.Id" name="trainerNum" />
-                <input class="btn-group-justified pill-content danger" type="submit" value="Follow">
+                
+
+                @foreach (var train in CurrentTrainers)
+                {
+                    if (item.Id == train.UserId)
+                    {
+                        <input style="display:none" type="checkbox" name="followed">
+                        <input class="btn-group-justified pill-content danger" type="submit" value="UnFollow">
+                        checkCreated = true;
+                    }
+                }
+
+                @if (checkCreated == false)
+                {
+                    <input style="display:none" type="checkbox" name="followed" checked="checked">
+                    <input class="btn-group-justified pill-content danger" type="submit" value="Follow">
+                }
+
+               
             </form>
         </div>
 

@@ -70,6 +70,9 @@ namespace SpotrBeta.Controllers
                     ViewBag.AllTrainers = db.Users.Where(x => x.FirstName.Contains(id)).ToList();
                 }
 
+
+                User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+                ViewBag.CurrentTrainers = db.Followers.Where(x => x.FollowerId == currentUser.Id).ToList();
                 
                 return View();
             }
@@ -83,51 +86,61 @@ namespace SpotrBeta.Controllers
         }
 
         [HttpPost]
-        public ActionResult Follow(int trainerNum)
+        public ActionResult Follow(string followed, int trainerNum)
         {
-            User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
-            Follower temp = new Follower();
-
-            //Random r = new Random();
-            //int rInt = r.Next(0, 100);
-            
-            //temp.ID = temp.ID + r.Next(0, 9999);
-
-            //see if this id exists in the database - if yes, we must select a new one 
-            do
+            if (followed != null)
             {
-                temp.ID = temp.ID + 1;
-            } while (db.Followers.Find(temp.ID) != null);
-            
-            temp.FollowerId = currentUser.Id;
-            temp.UserId = trainerNum;
+                User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+                Follower temp = new Follower();
 
-            //Determine if the trainer they're trying to follow is already on the list 
-            ViewBag.isFollowed = db.Followers.Where(x => x.FollowerId == currentUser.Id);
-            bool isDuplicate = false;
-            foreach (var item in ViewBag.isFollowed)
-            {
-                if (temp.UserId == item.UserId)
+                //Random r = new Random();
+                //int rInt = r.Next(0, 100);
+
+                //temp.ID = temp.ID + r.Next(0, 9999);
+
+                //see if this id exists in the database - if yes, we must select a new one 
+                do
                 {
-                    isDuplicate = true;
+                    temp.ID = temp.ID + 1;
+                } while (db.Followers.Find(temp.ID) != null);
+
+                temp.FollowerId = currentUser.Id;
+                temp.UserId = trainerNum;
+
+                //Determine if the trainer they're trying to follow is already on the list 
+                ViewBag.isFollowed = db.Followers.Where(x => x.FollowerId == currentUser.Id);
+                bool isDuplicate = false;
+                foreach (var item in ViewBag.isFollowed)
+                {
+                    if (temp.UserId == item.UserId)
+                    {
+                        isDuplicate = true;
+                    }
                 }
-            }
-            
-            if (isDuplicate == false)
+
+                if (isDuplicate == false)
+                {
+                    //not already existing
+                    db.Followers.Add(temp);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    // user is already following this trainer so do not add to db again
+                    //String ErrorMessage = "You are already following this User!";
+                    //MessageBox.Show(ErrorMessage, "Could not add User:");
+                    return RedirectToAction("Follow", "Users");
+                }
+            } else
             {
-                //not already existing
-                db.Followers.Add(temp);
+                User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+                Follower foll = db.Followers.Where(x => x.UserId == trainerNum).Where(n => n.FollowerId == currentUser.Id).FirstOrDefault();
+
+                db.Followers.Remove(foll);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
-            else
-            {
-                // user is already following this trainer so do not add to db again
-                //String ErrorMessage = "You are already following this User!";
-                //MessageBox.Show(ErrorMessage, "Could not add User:");
-                return RedirectToAction("Follow", "Users");
-            }
-            
         }
 
 
