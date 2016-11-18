@@ -57,12 +57,20 @@ namespace SpotrBeta.Controllers
 
 
 
-        public ActionResult Follow()
+        public ActionResult Follow(string id)
         {
             try
             {
+                if (id == null)
+                {
+                    ViewBag.AllTrainers = db.Users.ToList();
+                }
+                else
+                {
+                    ViewBag.AllTrainers = db.Users.Where(x => x.FirstName.Contains(id)).ToList();
+                }
 
-                ViewBag.AllTrainers = db.Users.ToList();
+                
                 return View();
             }
             catch(System.Data.Entity.Core.EntityCommandExecutionException ex)
