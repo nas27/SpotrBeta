@@ -13,38 +13,38 @@
     </p>
 </form>*@
 
-@using (Html.BeginForm("Follow","Users", FormMethod.Get))
+@using (Html.BeginForm("Follow", "Users", FormMethod.Get))
 {
-    <p>
-        Title: @Html.TextBox("id") <br />
-        <input type="submit" value="Search by Name" />
-    </p>
+    <strong>
+        Enter: @Html.TextBox("id")
+    </strong><input type="submit" class="btn-toolbar" value="Search by Name" />
+
+
 }
 
 
     @foreach (var item in allTrainers)
     {
         checkCreated = false;
-        <div class="form-group col-lg-offset-1">
+        <div class="form-group col-lg-offset-1 well-sm">
             <form action="/Users/Follow" method="post">
-                <h4>@item.FirstName @item.LastName</h4><div class="well-sm caption"><span class="glyphicon glyphicon-bookmark"></span><h6>Rating: @item.Rating</h6></div>
+                <h4>@item.FirstName @item.LastName</h4><span class="glyphicon glyphicon-bookmark"> Rating: @item.Rating</span>
                 <input style="display:none" type="number" value="@item.Id" name="trainerNum" />
-                
-
+               
                 @foreach (var train in CurrentTrainers)
                 {
                     if (item.Id == train.UserId)
                     {
                         <input style="display:none" type="checkbox" name="followed">
-                        <input class="btn-group-justified pill-content danger" type="submit" value="UnFollow">
-                        checkCreated = true;
+                        <input class="btn btn-block" type="submit" value="UnFollow">
+                        checkCreated = true; 
                     }
                 }
 
                 @if (checkCreated == false)
                 {
                     <input style="display:none" type="checkbox" name="followed" checked="checked">
-                    <input class="btn-group-justified pill-content danger" type="submit" value="Follow">
+                    <h1><input class="btn btn-block" type="submit" value="Follow"></h1>
                 }
 
                

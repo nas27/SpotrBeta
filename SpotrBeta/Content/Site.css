@@ -2,7 +2,7 @@
     padding-top: 50px;
     padding-bottom: 20px;
     font-family: 'Segoe UI', Helvetica, sans-serif;
-    background-color: #DEDED3;
+    background-color: #d1d1d1;
 }
 
 .form-control{
@@ -10,6 +10,11 @@
     border-radius: 0 !important;
     background-color:#ffecd4;
 }
+input{
+    color:#FFFFFF;
+    background-color:#bb0000;
+}
+
 
 h6{
     color:#101010;
@@ -41,34 +46,34 @@ input.btn-group-justified pill-content{
     background-color:blueviolet;
 }
 
+form-group col-lg-offset-1 well-sm{
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
 
 label control-label col-md-2{
     color:red;
 }
 
-
-* {
-  
-}
-
 i{
-    color:#4a0000;
+    color:crimson;
 }
 
 
 
 
 a:link  {
-   color:#620000;
-   background-color:rgba(222, 222, 211, 0.69);
+   color:#000000;
+   background-color:rgba(174, 174, 174, 0.87);
  
 }
 a:visited{
-    color:#801111;
+    color:crimson;
 }
 
 .nav .navbar-nav{
-    color:blanchedalmond;
+    color:#101010;
 }
 h1{ 
     font-family:Exo;
@@ -80,7 +85,7 @@ h2 {
 }
 
 img {
-    padding-top:10px;
+    padding-top:0px;
 }
 
 .nav{
@@ -111,8 +116,16 @@ textarea {
 
 .nav.navbar-nav li a {
     font-size:14px;
+    color:white;
  
-   font-family:Arial, Helvetica, sans-serif;
+   font-family: 'Raleway', Helvetica, Arial, sans-serif;
+	font-size: 20px;
+	line-height: 30px;
+    text-emphasis-style:filled;
+    font-weight:bolder;
+    background-color:#bb0000;
+
+
  }
 
 
@@ -122,6 +135,6 @@ textarea {
 
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
-      width: 70%;
+      width: 50%;
       margin: auto;
   }

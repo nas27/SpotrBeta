@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Capstone ASP.NET</title>
+    <title>@ViewBag.Title - Capstone</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    
+    <link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css' />
 
 </head>
 <body>
@@ -32,12 +34,11 @@
             <div class="navbar-collapse navbar-brand collapse container">
 
                 <ul class="nav navbar-nav nav-tabs">        
-                    <li>@Html.ActionLink("Create A Workout!", "Create", "Workouts")</li>
-                    <li>@Html.ActionLink("Follow a Trainer", "Follow", "Users")</li>
+                    <li>@Html.ActionLink("Create Workout!", "Create", "Workouts")</li>
+                    <li>@Html.ActionLink("Follow", "Follow", "Users")</li>
                     <li>@Html.ActionLink("My Exercises", "Index", "Exercis")</li>
                     @*<li>@Html.ActionLink("My Workouts", "Index", "Workouts")</li>*@
-
-                    <li>@Html.ActionLink("About", "About", "Home")</li>             
+                    <li>@Html.ActionLink("About Us", "About", "Home")</li>             
                     <li>@Html.ActionLink("My Profile", "Index", "Users")</li>
              
 

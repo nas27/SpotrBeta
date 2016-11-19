@@ -1,7 +1,7 @@
 ﻿@model SpotrBeta.Models.User
 
 @{
-    ViewBag.Title = "My Profile";
+    ViewBag.Title = "My Profile.";
 }
 
 <h1>My Profile</h1>
@@ -107,7 +107,7 @@
 }
 else
 {
-    <p> Please log in first:</p>
+    <h4>Please log in first to view your profile.</h4>
     <div class="alert">@Html.Partial("_LoginPartial")</div>
 
 }

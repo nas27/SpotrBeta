@@ -16,6 +16,7 @@ namespace SpotrBeta.Controllers
         {
          try
             {
+               
                 User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
                 //avoid nullobjectreference exception
                 if (currentUser != null)
@@ -31,7 +32,7 @@ namespace SpotrBeta.Controllers
 
 
             }   
-            catch(InvalidOperationException ex)
+            catch(Exception ex)
             {
                 ex.ToString();
             }
