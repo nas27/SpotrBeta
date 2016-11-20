@@ -6,51 +6,29 @@
     var currentWorkout = "";
 }
 
-<h1>View your exercises</h1>
+<h1>View your exercises:</h1>
 
-<table class="table">
-    <tr>
-        <th>
-            Workout Name
-        </th>
-        <th>
-            Exercise Name
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayName("Repetitions")
-        </th>
-        <th>
-            @Html.DisplayName("Rest (minutes)")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Weight)
-        </th>
-        <th></th>
-    </tr>
-    </table>
     @foreach (var item in Model)
     {
-        <div class="alert-success">
+        <h3 class="label-default">
             @{
                 currentWorkout = item.Workout.Name;
             }
                 
             @if (currentWorkout != prevWorkout)
                 {
-                @Html.DisplayFor(modelItem => item.Workout.Name)
-            }
-        </div>
+                    @Html.DisplayFor(modelItem => item.Workout.Name)
+                }
+        </h3>
 
-          <p>@Html.DisplayFor(modelItem => item.Name)</p>
-          <p>@Html.DisplayFor(modelItem => item.Description)</p>
-          <p class="badge">@Html.DisplayFor(modelItem => item.NumReps)</p>
-           <p class="badge">@Html.DisplayFor(modelItem => item.RestTime)</p>
-             <p class="badge">@Html.DisplayFor(modelItem => item.Weight)</p>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+          <h4 class="item">@Html.DisplayFor(modelItem => item.Name)</h4>
+         <p><b>Desc: </b>@Html.DisplayFor(modelItem => item.Description)</p>
+          <p class="badge">@Html.DisplayFor(modelItem => item.NumReps) reps</p>
+           <p class="badge">Rest for @Html.DisplayFor(modelItem => item.RestTime) mins</p>
+             <p class="badge">@Html.DisplayFor(modelItem => item.Weight) lbs.</p>
+            <p>@Html.ActionLink("Update", "Edit", new { id = item.Id }) or
+                @Html.ActionLink("Remove", "Delete", new { id = item.Id }) this exercise</p>
+            
 
 
     prevWorkout = item.Workout.Name;
