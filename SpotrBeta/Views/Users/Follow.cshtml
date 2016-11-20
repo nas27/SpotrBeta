@@ -6,12 +6,6 @@
     var checkCreated = false;
 }
 
-@*<form asp-controller="UserSort" asp-action="Follow" method="get">
-    <p>
-        User: <input type="text" name="SearchString">
-        <input type="submit" name="FindTrainer" /> 
-    </p>
-</form>*@
 
 @using (Html.BeginForm("Follow", "Users", FormMethod.Get))
 {
@@ -54,10 +48,4 @@
 
     }
 
-    @*<div class="form-group">
-            <form action="/Users/Follow" method="post">
-                <input type="number" value="1" name="trainerNum" />
-                <input type="submit" value="Follow">
-            </form>
 
-        </div>*@

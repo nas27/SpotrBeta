@@ -1,15 +1,26 @@
 ﻿@model SpotrBeta.Models.User
 
 @{
-    ViewBag.Title = "My Profile.";
+    ViewBag.Title = "My Profile";
+    var weight = ViewBag.Weight;
+    var height = ViewBag.Height;
+    var bmi = (weight / height) / height;
 }
 
-<h1>My Profile</h1>
+<h1>My Profile.</h1>
 
 @if (User.Identity.IsAuthenticated)
 {
     <h2>
     @Html.ActionLink("Edit", "Edit", new { id = ViewBag.CurrentUserId }) your profile?</h2>
+
+    if (weight != null && height != null)
+    {
+        int val = weight / (int)height;
+        int fVal = val / (int)height;
+        <section class="text-danger"><span class="glyphicon glyphicon-heart"></span><b> Your Body Mass Index(BMI) is: </b>@Html.DisplayName(fVal.ToString())</section>
+    }
+
 <dl class="dl-horizontal">
     <dt>
        First Name
@@ -82,14 +93,14 @@
     <dd>
         @Html.DisplayFor(model => model.SkillLevel)
     </dd>
-
-    <dt>
+<!--<dt>
        Apply to be a Trainer
     </dt>
 
     <dd>
-        @Html.DisplayFor(model => model.IsTrainer)
-    </dd>
+        @*Html.DisplayFor(model => model.IsTrainer)*@
+    </dd>-->
+    
 
     <dt>
         @Html.DisplayNameFor(model => model.Specialty)

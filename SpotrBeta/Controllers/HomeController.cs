@@ -25,8 +25,7 @@ namespace SpotrBeta.Controllers
                     ViewBag.AllUsers = db.Users.ToList();
                     ViewBag.AllExercises = db.Exercises.ToList();
                     ViewBag.AllWorkouts = db.Workouts.ToList();
-                    ViewBag.Weight = currentUser.Weight;
-                    ViewBag.Height = currentUser.Height;
+                   
                 }
                 
 

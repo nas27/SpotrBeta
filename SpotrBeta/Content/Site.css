@@ -31,6 +31,13 @@ h4{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.table{
+    font-family:Arial, Helvetica, sans-serif;
+    border-spacing:10px;
+    border:thin;
+    font-size:large;
+}
+
 input.btn-group-justified{
     box-shadow:none;
     text-shadow:none;

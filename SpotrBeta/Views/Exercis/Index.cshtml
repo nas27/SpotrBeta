@@ -7,15 +7,14 @@
 }
 
 <h1>View your exercises</h1>
-    @*Html.ActionLink("Create New", "Create")*@
 
 <table class="table">
     <tr>
         <th>
-        Workout Name 
+            Workout Name
         </th>
         <th>
-        Exercise Name
+            Exercise Name
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
@@ -31,39 +30,36 @@
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    currentWorkout = item.Workout.Name;
-    <tr>
-        <td>
+    </table>
+    @foreach (var item in Model)
+    {
+        <div class="alert-success">
+            @{
+                currentWorkout = item.Workout.Name;
+            }
+                
             @if (currentWorkout != prevWorkout)
-            {
+                {
                 @Html.DisplayFor(modelItem => item.Workout.Name)
             }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumReps)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RestTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Weight)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @*Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-    prevWorkout = item.Workout.Name;
-}
+        </div>
 
-</table>
-@Html.ActionLink("Add another exercise", "Create", "Exercis")
+          <p>@Html.DisplayFor(modelItem => item.Name)</p>
+          <p>@Html.DisplayFor(modelItem => item.Description)</p>
+          <p class="badge">@Html.DisplayFor(modelItem => item.NumReps)</p>
+           <p class="badge">@Html.DisplayFor(modelItem => item.RestTime)</p>
+             <p class="badge">@Html.DisplayFor(modelItem => item.Weight)</p>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+
+
+    prevWorkout = item.Workout.Name;
+
+
+    }
+
+
+
+
+
+<h4>@Html.ActionLink("Add another exercise", "Create", "Exercis") <span class="glyphicon glyphicon-arrow-right"></span> </h4>

@@ -24,6 +24,8 @@ namespace SpotrBeta.Controllers
                 if (currentUser != null)
                 {
                     ViewBag.CurrentUserId = currentUser.Id;
+                    ViewBag.Weight = currentUser.Weight;
+                    ViewBag.Height = currentUser.Height;
                 }
                 return View(currentUser);
                 
