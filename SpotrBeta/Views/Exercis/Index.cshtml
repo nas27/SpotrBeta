@@ -10,16 +10,16 @@
 
     @foreach (var item in Model)
     {
-        <h3 class="label-default">
+        <h6>
             @{
                 currentWorkout = item.Workout.Name;
             }
-                
+                <!--Makes sure Workout name does not appear twice-->
             @if (currentWorkout != prevWorkout)
-                {
+            {
                     @Html.DisplayFor(modelItem => item.Workout.Name)
-                }
-        </h3>
+            }
+        </h6>
 
           <h4 class="item">@Html.DisplayFor(modelItem => item.Name)</h4>
          <p><b>Desc: </b>@Html.DisplayFor(modelItem => item.Description)</p>
@@ -27,17 +27,29 @@
            <p class="badge">Rest for @Html.DisplayFor(modelItem => item.RestTime) mins</p>
              <p class="badge">@Html.DisplayFor(modelItem => item.Weight) lbs.</p>
             <p>@Html.ActionLink("Update", "Edit", new { id = item.Id }) or
-                @Html.ActionLink("Remove", "Delete", new { id = item.Id }) this exercise</p>
-            
+               @Html.ActionLink("Remove", "Delete", new { id = item.Id }) this exercise</p>
+
+               
+
+                if (currentWorkout == prevWorkout)
+                {
+                    <div style="border-top:2px solid red;" />
+
+                }
+                else
+                {
+                    <div style="border-top:1px solid red;" />
+                }
+                    prevWorkout = item.Workout.Name;
 
 
-    prevWorkout = item.Workout.Name;
-
-
-    }
 
 
 
+
+
+                }
+<div style="border-top:1px solid red;" />
 
 
 <br/>
