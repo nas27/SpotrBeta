@@ -26,8 +26,19 @@ namespace SpotrBeta.Controllers
                     ViewBag.CurrentUserId = currentUser.Id;
                     ViewBag.Weight = currentUser.Weight;
                     ViewBag.Height = currentUser.Height;
+                    return View(currentUser);
                 }
-                return View(currentUser);
+                else 
+                {
+                    //case for fb users
+                    var tmp = User.Identity.Name.Split(' ')[0];
+                    User currentFBUser = db.Users.Where(x => x.FirstName == tmp).FirstOrDefault();
+                    ViewBag.CurrentUserId = currentFBUser.Id;
+                    ViewBag.Weight = currentFBUser.Weight;
+                    ViewBag.Height = currentFBUser.Height;
+                    return View(currentFBUser);
+                }
+               
                 
 
             }   

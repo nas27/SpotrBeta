@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using SpotrBeta.Models;
+using Microsoft.Owin.Security.Facebook;
+using System.Configuration;
 
 namespace SpotrBeta
 {
@@ -54,16 +56,26 @@ namespace SpotrBeta
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: "177680516019287",
-               appSecret: "e9fa946e8078cc5450ed2fd0a3b2d615");
+            //app.UseFacebookAuthentication(
+            //   appId: "177680516019287",
+            //   appSecret: "e9fa946e8078cc5450ed2fd0a3b2d615");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
                 ClientId = "616482062006-86g410gosh4u49d3k5niouf1s8hfm1m8.apps.googleusercontent.com",
                 ClientSecret = "nLUienoEoinN28YRof4FYKiK"
 
+
             });
+
+            var options = new FacebookAuthenticationOptions();
+            options.AppId = "177680516019287";
+            options.AppSecret = "e9fa946e8078cc5450ed2fd0a3b2d615";
+            options.Scope.Add("public_profile");
+            options.Scope.Add("email");
+            options.Scope.Add("user_photos");
+            options.Scope.Add("user_about_me");
+            app.UseFacebookAuthentication(options);
         }
     }
 }
