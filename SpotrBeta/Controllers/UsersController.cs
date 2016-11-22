@@ -85,7 +85,17 @@ namespace SpotrBeta.Controllers
 
 
                 User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
-                ViewBag.CurrentTrainers = db.Followers.Where(x => x.FollowerId == currentUser.Id).ToList();
+                var tmp = User.Identity.Name.Split(' ')[0];
+                User currentFBUser = db.Users.Where(x => x.FirstName == tmp).FirstOrDefault();
+                if (currentUser != null)
+                {
+                    ViewBag.CurrentTrainers = db.Followers.Where(x => x.FollowerId == currentUser.Id).ToList();
+                }
+                else
+                {
+                    ViewBag.CurrentTrainers = db.Followers.Where(x => x.FollowerId == currentFBUser.Id).ToList();
+                }
+               
                 
                 return View();
             }
@@ -101,59 +111,125 @@ namespace SpotrBeta.Controllers
         [HttpPost]
         public ActionResult Follow(string followed, int trainerNum)
         {
-            if (followed != null)
+            User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+            var tmp = User.Identity.Name.Split(' ')[0];
+            User currentFBUser = db.Users.Where(x => x.FirstName == tmp).FirstOrDefault();
+
+            if (currentUser == null)
             {
-                User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
-                Follower temp = new Follower();
-
-                //Random r = new Random();
-                //int rInt = r.Next(0, 100);
-
-                //temp.ID = temp.ID + r.Next(0, 9999);
-
-                //see if this id exists in the database - if yes, we must select a new one 
-                do
+                if (followed != null)
                 {
-                    temp.ID = temp.ID + 1;
-                } while (db.Followers.Find(temp.ID) != null);
 
-                temp.FollowerId = currentUser.Id;
-                temp.UserId = trainerNum;
+                    Follower temp = new Follower();
+                    //Random r = new Random();
+                    //int rInt = r.Next(0, 100);
 
-                //Determine if the trainer they're trying to follow is already on the list 
-                ViewBag.isFollowed = db.Followers.Where(x => x.FollowerId == currentUser.Id);
-                bool isDuplicate = false;
-                foreach (var item in ViewBag.isFollowed)
-                {
-                    if (temp.UserId == item.UserId)
+                    //temp.ID = temp.ID + r.Next(0, 9999);
+
+                    //see if this id exists in the database - if yes, we must select a new one 
+                    do
                     {
-                        isDuplicate = true;
-                    }
-                }
+                        temp.ID = temp.ID + 1;
+                    } while (db.Followers.Find(temp.ID) != null);
 
-                if (isDuplicate == false)
-                {
-                    //not already existing
-                    db.Followers.Add(temp);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Home");
+                    temp.FollowerId = currentFBUser.Id;
+                    temp.UserId = trainerNum;
+
+                    //Determine if the trainer they're trying to follow is already on the list 
+                    ViewBag.isFollowed = db.Followers.Where(x => x.FollowerId == currentFBUser.Id);
+                    bool isDuplicate = false;
+                    foreach (var item in ViewBag.isFollowed)
+                    {
+                        if (temp.UserId == item.UserId)
+                        {
+                            isDuplicate = true;
+                        }
+                    }
+
+                    if (isDuplicate == false)
+                    {
+                        //not already existing
+                        db.Followers.Add(temp);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        // user is already following this trainer so do not add to db again
+                        //String ErrorMessage = "You are already following this User!";
+                        //MessageBox.Show(ErrorMessage, "Could not add User:");
+                        return RedirectToAction("Follow", "Users");
+                    }
                 }
                 else
                 {
-                    // user is already following this trainer so do not add to db again
-                    //String ErrorMessage = "You are already following this User!";
-                    //MessageBox.Show(ErrorMessage, "Could not add User:");
-                    return RedirectToAction("Follow", "Users");
-                }
-            } else
-            {
-                User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
-                Follower foll = db.Followers.Where(x => x.UserId == trainerNum).Where(n => n.FollowerId == currentUser.Id).FirstOrDefault();
+                    var tempName = User.Identity.Name.Split(' ')[0];
+                    currentFBUser = db.Users.Where(x => x.FirstName == tempName).FirstOrDefault();
+                    Follower foll = db.Followers.Where(x => x.UserId == trainerNum).Where(n => n.FollowerId == currentFBUser.Id).FirstOrDefault();
 
-                db.Followers.Remove(foll);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                    db.Followers.Remove(foll);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
             }
+
+            else
+            {
+                if (followed != null)
+                {
+
+                    Follower temp = new Follower();
+                    //Random r = new Random();
+                    //int rInt = r.Next(0, 100);
+
+                    //temp.ID = temp.ID + r.Next(0, 9999);
+
+                    //see if this id exists in the database - if yes, we must select a new one 
+                    do
+                    {
+                        temp.ID = temp.ID + 1;
+                    } while (db.Followers.Find(temp.ID) != null);
+
+                    temp.FollowerId = currentUser.Id;
+                    temp.UserId = trainerNum;
+
+                    //Determine if the trainer they're trying to follow is already on the list 
+                    ViewBag.isFollowed = db.Followers.Where(x => x.FollowerId == currentUser.Id);
+                    bool isDuplicate = false;
+                    foreach (var item in ViewBag.isFollowed)
+                    {
+                        if (temp.UserId == item.UserId)
+                        {
+                            isDuplicate = true;
+                        }
+                    }
+
+                    if (isDuplicate == false)
+                    {
+                        //not already existing
+                        db.Followers.Add(temp);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        // user is already following this trainer so do not add to db again
+                        //String ErrorMessage = "You are already following this User!";
+                        //MessageBox.Show(ErrorMessage, "Could not add User:");
+                        return RedirectToAction("Follow", "Users");
+                    }
+                }
+                else
+                {
+                    currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+                    Follower foll = db.Followers.Where(x => x.UserId == trainerNum).Where(n => n.FollowerId == currentUser.Id).FirstOrDefault();
+
+                    db.Followers.Remove(foll);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            
         }
 
 
