@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "Homepage";
 
     var userFollowed = ViewBag.UserFollowed;
     var allWorkouts = ViewBag.AllWorkouts;
@@ -16,7 +16,27 @@
 
 <div class="alert">@Html.Partial("_LoginPartial")</div>
 
+
+    
+<!-- AddToAny BEGIN -->
+<!--<div class="a2a_kit a2a_kit_size_48 a2a_default_style">-->
+    <!--<a class="a2a_dd" href="https://www.addtoany.com/share"></a>-->
+    <!--<a class="a2a_button_facebook"></a>-->
+    <!--<a class="a2a_button_twitter"></a>-->
+    <!--<a class="a2a_button_google_plus"></a>-->
+<!--</div>-->
+<!--<script async src="https://static.addtoany.com/menu/page.js"></script>-->
+<!-- AddToAny END -->
 <br/>
+
+<!--<a href="http://twitter.com/?status=Hey+everyone+I+am+%23social+%23media+%23share+%23spotr+%23workout+http://bit.ly/8504xO+from+@("@")spotr+%23training+%23regiment"><img src="https://static.addtoany.com/images/blog/tweet-button-2015.png" border="0" /></a>-->
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="Hi I&#39;m using spotr" data-url="http://nastasia-001-site1.htempurl.com/" data-via="spotr" data-hashtags="training" data-lang="en" data-show-count="false">Tweet</a>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<br/>
+
+<a href="http://www.facebook.com/share.php?u=http://nastasia-001-site1.htempurl.com"><img src="http://files.hostgator.co.in/hostgator254362/image/facebook-share-button.png" border="0" /></a>
+
 <div class="container">
     <br>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -28,7 +48,6 @@
             <li data-target="#myCarousel" data-slide-to="3"></li>
             <li data-target="#myCarousel" data-slide-to="4"></li>
         </ol>
-
         <!-- Image Slide Wrapper -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
@@ -67,10 +86,12 @@
 {
     <h2>Workout Feed:</h2>
     <h4 class="caption">See what you and your friends are doing!</h4>
-
-  
-
 }
+
+
+
+
+
 <div class="jumbotron">
     @if (User.Identity.IsAuthenticated && userFollowed != null)
     {
@@ -114,6 +135,11 @@
         }
     }
 </div>
+
+<footer>
+    <p>&copy; @DateTime.Now - Capstone Project</p>
+</footer>
+
 
 
     
