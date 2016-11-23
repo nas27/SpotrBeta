@@ -7,17 +7,20 @@
 }
 
 
-@using (Html.BeginForm("Follow", "Users", FormMethod.Get))
+
+
+
+@if (User.Identity.IsAuthenticated)
 {
-    <strong>
-        Enter: @Html.TextBox("id")
-    </strong><input type="submit" class="btn-toolbar" value="Search by Name" />
+    using (Html.BeginForm("Follow", "Users", FormMethod.Get))
+    {
+        <strong>
+            Enter: @Html.TextBox("id")
+        </strong><input type="submit" class="btn-toolbar" value="Search by Name" />
 
 
-}
-
-
-    @foreach (var item in allTrainers)
+    }
+    foreach (var item in allTrainers)
     {
         checkCreated = false;
         <div class="form-group col-lg-offset-1 well-sm">
@@ -31,7 +34,7 @@
                     {
                         <input style="display:none" type="checkbox" name="followed">
                         <input class="btn btn-block" type="submit" value="UnFollow">
-                        checkCreated = true; 
+                        checkCreated = true;
                     }
                 }
 
@@ -48,4 +51,9 @@
 
     }
 
-
+}
+else
+{
+    <h4>Please log in first to follow people.</h4>
+    <div class="alert">@Html.Partial("_LoginPartial")</div>
+}
