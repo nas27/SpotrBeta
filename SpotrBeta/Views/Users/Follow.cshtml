@@ -6,8 +6,10 @@
     var checkCreated = false;
 }
 
+@if (User.Identity.IsAuthenticated)
+{
 
-@using (Html.BeginForm("Follow", "Users", FormMethod.Get))
+using (Html.BeginForm("Follow", "Users", FormMethod.Get))
 {
     <strong>
         Enter: @Html.TextBox("id")
@@ -23,14 +25,8 @@
     </form>
 </div>
 
-@*@using (Html.BeginForm("Follow", "Users", FormMethod.Get))
-    {
-        <strong style="display:none">
-            Enter: @Html.TextBox("id", "Top 3")
-        </strong><input type="submit" class="btn-toolbar" value="Show Top Trainers" />
-    }
-*@ 
-    @foreach (var item in allTrainers)
+
+   foreach (var item in allTrainers)
     {
         checkCreated = false;
         <div class="form-group col-lg-offset-1 well-sm">
@@ -59,6 +55,14 @@
         </div>
 
 
-    }
+    
 
+}
+
+}
+else
+{
+    <h4>Please log in first to follow people.</h4>
+    <div class="alert">@Html.Partial("_LoginPartial")</div>
+}
 

@@ -80,6 +80,7 @@ namespace SpotrBeta.Controllers
                     catch (FormatException error)
                     {
                         ViewBag.AllTrainers = db.Users.Where(x => x.FirstName.Contains(id)).ToList();
+                        
                     }
 
                     if (id.Contains("Top 3"))
