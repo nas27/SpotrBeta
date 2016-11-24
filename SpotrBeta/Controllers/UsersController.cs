@@ -58,7 +58,7 @@ namespace SpotrBeta.Controllers
 
         }
         
-        public ActionResult Follow(string id)
+        public ActionResult Follow(string id, string SpecialtyID)
         {
             try
             {
@@ -88,6 +88,10 @@ namespace SpotrBeta.Controllers
                         ViewBag.AllTrainers = db.Users.OrderByDescending(x => x.Rating).Take(3).ToList();
 
                     }
+                    if (SpecialtyID == "SpecialtySearch")
+                    {
+                        ViewBag.AllTrainers = db.Users.Where(x => x.Specialty.Trim().ToUpper().Contains(id.Trim().ToUpper())).ToList();
+                    }
                 }
 
                 
@@ -114,6 +118,7 @@ namespace SpotrBeta.Controllers
                 
 
         }
+
 
         [HttpPost]
         public ActionResult Follow(string followed, int trainerNum)

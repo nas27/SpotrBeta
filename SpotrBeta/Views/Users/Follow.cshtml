@@ -11,36 +11,54 @@
 
 using (Html.BeginForm("Follow", "Users", FormMethod.Get))
 {
+
     <strong>
         Enter: @Html.TextBox("id")
     </strong><input type="submit" class="btn-toolbar" value="Search" />
 
 
-}
+    }
 
-<div class="form-group">
-    <form action="/Users/Follow" method="get">
-        <input style="display:none" type="text" value="Top 3" name="id" />
-        <input type="submit" value="Search" />
-    </form>
-</div>
+        <div class="form-group">
+            
+            <form action="/Users/Follow" method="get">
+                <strong>
+                    View Top 3:
+                </strong>
+                <input style="display:none" type="text" value="Top 3" name="id" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+
+        <div class="form-group">           
+            <form action="/Users/Follow" method="get">
+                <strong>
+                    Search by Specialty:
+                </strong>
+               @Html.TextBox("id")
+                <input type="hidden" name="SpecialtyID" id="SpecialtyID" value="SpecialtySearch"  />               
+                <input type="submit" name ="id" id="id" value="Search" />
+            </form>
+        </div>
 
 
-   foreach (var item in allTrainers)
+
+
+    foreach (var item in allTrainers)
     {
         checkCreated = false;
         <div class="form-group col-lg-offset-1 well-sm">
             <form action="/Users/Follow" method="post">
-                <h4>@item.FirstName @item.LastName</h4><span class="glyphicon glyphicon-bookmark"> Rating: @item.Rating</span>
+                <h4>@item.FirstName @item.LastName</h4><span class="glyphicon glyphicon-bookmark"> Rating: @item.Rating</span> <p> @item.Specialty</p>
                 <input style="display:none" type="number" value="@item.Id" name="trainerNum" />
-               
+
                 @foreach (var train in CurrentTrainers)
                 {
                     if (item.Id == train.UserId)
                     {
                         <input style="display:none" type="checkbox" name="followed">
                         <input class="btn btn-block" type="submit" value="UnFollow">
-                        checkCreated = true; 
+                        checkCreated = true;
                     }
                 }
 
@@ -50,19 +68,19 @@ using (Html.BeginForm("Follow", "Users", FormMethod.Get))
                     <h1><input class="btn btn-block" type="submit" value="Follow"></h1>
                 }
 
-               
+
             </form>
         </div>
 
 
-    
 
-}
 
-}
-else
-{
-    <h4>Please log in first to follow people.</h4>
-    <div class="alert">@Html.Partial("_LoginPartial")</div>
-}
+        }
+
+        }
+        else
+        {
+        <h4>Please log in first to follow people.</h4>
+        <div class="alert">@Html.Partial("_LoginPartial")</div>
+        }
 
