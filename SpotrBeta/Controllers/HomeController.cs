@@ -53,6 +53,16 @@ namespace SpotrBeta.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult UpVote(int id)
+        {
+            var trainer = db.Users.Find(id);
+
+            trainer.Rating++;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+
         [AllowAnonymous]
         public ActionResult About()
         {

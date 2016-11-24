@@ -105,10 +105,17 @@
                 {
 
                 <section><span class="glyphicon glyphicon-user"></span> <strong>@userInfo.FirstName @userInfo.LastName</strong> has posted the workout:</section>
+                
+                <div class="form-group">
+                    <form action="/Home/UpVote" method="post">
+                        <input style="display:none" type="number" value="@userInfo.Id" name="id" />
+                        <input type="submit" value="UpVote" />
+                    </form>
+                </div>
 
-                        foreach (var item in allWorkouts)
+                    foreach (var item in allWorkouts)
                     {
-        
+
                         if (item.User_Id == userInfo.Id)
                         {
 

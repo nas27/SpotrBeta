@@ -11,12 +11,25 @@
 {
     <strong>
         Enter: @Html.TextBox("id")
-    </strong><input type="submit" class="btn-toolbar" value="Search by Name" />
+    </strong><input type="submit" class="btn-toolbar" value="Search" />
 
 
 }
 
+<div class="form-group">
+    <form action="/Users/Follow" method="get">
+        <input style="display:none" type="text" value="Top 3" name="id" />
+        <input type="submit" value="Search" />
+    </form>
+</div>
 
+@*@using (Html.BeginForm("Follow", "Users", FormMethod.Get))
+    {
+        <strong style="display:none">
+            Enter: @Html.TextBox("id", "Top 3")
+        </strong><input type="submit" class="btn-toolbar" value="Show Top Trainers" />
+    }
+*@ 
     @foreach (var item in allTrainers)
     {
         checkCreated = false;

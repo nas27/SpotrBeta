@@ -52,24 +52,7 @@ namespace SpotrBeta.Controllers
 
 
         }
-
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Index([Bind(Include = "Id,FirstName,LastName,Email,Age,Weight,GoalWeight,Height,Country,SkillLevel,IsTrainer,Specialty,Rating")] User user)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(user).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(user);
-        //}
-
-
-
-
+        
         public ActionResult Follow(string id)
         {
             try
@@ -80,8 +63,28 @@ namespace SpotrBeta.Controllers
                 }
                 else
                 {
+                    
                     ViewBag.AllTrainers = db.Users.Where(x => x.FirstName.Contains(id)).ToList();
+                    List<User> lt = ViewBag.AllTrainers;
+
+                    try
+                    {
+                        short num = System.Convert.ToInt16(id);
+                        ViewBag.AllTrainers.AddRange(db.Users.Where(x => x.Rating >= num).ToList());
+                    }
+                    catch (FormatException error)
+                    {
+                        ViewBag.AllTrainers = db.Users.Where(x => x.FirstName.Contains(id)).ToList();
+                    }
+
+                    if (id.Contains("Top 3"))
+                    {
+                        ViewBag.AllTrainers = db.Users.OrderByDescending(x => x.Rating).Take(3).ToList();
+
+                    }
                 }
+
+                
 
 
                 User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
@@ -95,8 +98,6 @@ namespace SpotrBeta.Controllers
                 {
                     ViewBag.CurrentTrainers = db.Followers.Where(x => x.FollowerId == currentFBUser.Id).ToList();
                 }
-               
-                
                 return View();
             }
             catch(System.Data.Entity.Core.EntityCommandExecutionException ex)
