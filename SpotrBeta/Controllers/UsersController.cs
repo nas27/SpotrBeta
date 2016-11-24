@@ -21,6 +21,8 @@ namespace SpotrBeta.Controllers
             try
             {
                 User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+                var tmp = User.Identity.Name.Split(' ')[0];
+                User currentFBUser = db.Users.Where(x => x.FirstName == tmp).FirstOrDefault();
                 if (currentUser != null)
                 {
                     ViewBag.CurrentUserId = currentUser.Id;
@@ -28,15 +30,18 @@ namespace SpotrBeta.Controllers
                     ViewBag.Height = currentUser.Height;
                     return View(currentUser);
                 }
-                else 
+                else if (currentFBUser != null)
                 {
                     //case for fb users
-                    var tmp = User.Identity.Name.Split(' ')[0];
-                    User currentFBUser = db.Users.Where(x => x.FirstName == tmp).FirstOrDefault();
+
                     ViewBag.CurrentUserId = currentFBUser.Id;
                     ViewBag.Weight = currentFBUser.Weight;
                     ViewBag.Height = currentFBUser.Height;
                     return View(currentFBUser);
+                }
+                else
+                {
+                    return View();
                 }
                
                 
@@ -94,7 +99,7 @@ namespace SpotrBeta.Controllers
                 {
                     ViewBag.CurrentTrainers = db.Followers.Where(x => x.FollowerId == currentUser.Id).ToList();
                 }
-                else
+                else if(currentFBUser != null)
                 {
                     ViewBag.CurrentTrainers = db.Followers.Where(x => x.FollowerId == currentFBUser.Id).ToList();
                 }
