@@ -19,12 +19,21 @@ namespace SpotrBeta.Controllers
                
                 User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
                 //avoid nullobjectreference exception
-                if (currentUser == null)
-                {
-                    //fb case
-                    var tmp = User.Identity.Name.Split('_')[0];
-                    User currentFBUser = db.Users.Where(x => x.FirstName == tmp).FirstOrDefault();
+                //fb case
+                var tmp = User.Identity.Name.Split('_')[0];
+                User currentFBUser = db.Users.Where(x => x.FirstName == tmp).FirstOrDefault();
 
+                if (currentUser != null)
+                {
+
+                    ViewBag.UserFollowed = db.Followers.Where(x => x.FollowerId == currentUser.Id);
+                    ViewBag.AllUsers = db.Users.ToList();
+                    ViewBag.AllExercises = db.Exercises.ToList();
+                    ViewBag.AllWorkouts = db.Workouts.ToList();
+
+                }
+                else if (currentFBUser != null)
+                {
                     ViewBag.UserFollowed = db.Followers.Where(x => x.FollowerId == currentFBUser.Id);
                     ViewBag.AllUsers = db.Users.ToList();
                     ViewBag.AllExercises = db.Exercises.ToList();
@@ -32,10 +41,7 @@ namespace SpotrBeta.Controllers
                 }
                 else
                 {
-                    ViewBag.UserFollowed = db.Followers.Where(x => x.FollowerId == currentUser.Id);
-                    ViewBag.AllUsers = db.Users.ToList();
-                    ViewBag.AllExercises = db.Exercises.ToList();
-                    ViewBag.AllWorkouts = db.Workouts.ToList();
+                    return View();
                 }
                 
                 
