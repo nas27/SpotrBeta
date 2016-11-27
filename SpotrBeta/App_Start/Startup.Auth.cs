@@ -75,7 +75,11 @@ namespace SpotrBeta
             options.Scope.Add("email");
             options.Scope.Add("user_photos");
             options.Scope.Add("user_about_me");
+           // options.Scope.Add("user_country");
+            //options.Scope.Add("birthday");
             app.UseFacebookAuthentication(options);
+
+
         }
     }
 }

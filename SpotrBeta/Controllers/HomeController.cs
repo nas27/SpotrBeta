@@ -22,7 +22,7 @@ namespace SpotrBeta.Controllers
                 if (currentUser == null)
                 {
                     //fb case
-                    var tmp = User.Identity.Name.Split(' ')[0];
+                    var tmp = User.Identity.Name.Split('_')[0];
                     User currentFBUser = db.Users.Where(x => x.FirstName == tmp).FirstOrDefault();
 
                     ViewBag.UserFollowed = db.Followers.Where(x => x.FollowerId == currentFBUser.Id);

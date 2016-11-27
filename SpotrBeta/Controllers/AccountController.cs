@@ -356,6 +356,52 @@ namespace SpotrBeta.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
+            //Create User if Facebook Authentication succeeded 
+            try
+            {
+
+
+                var externalIdentity = HttpContext.GetOwinContext().Authentication.GetExternalIdentityAsync(DefaultAuthenticationTypes.ExternalCookie);
+
+                var fullName = externalIdentity.Result.GetUserName();
+                int space = fullName.IndexOf(' ');
+                string firstName = fullName.Substring(0, space);
+                string lastName = fullName.Substring(space);
+
+                //CDC - PROBLEM: if user has not confirmed email address, the value will be null here no matter what
+                //so we will use their facebook email which is userName@facebook.com
+
+                bool canGetEmail = false;
+
+                try
+                {
+                    var testEmail = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+                    canGetEmail = true;
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                string email;
+                if (canGetEmail)
+                {
+                    email = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+                    ViewBag.FBemail = email;
+                }
+                else
+                {
+                    fullName = fullName.Replace(" ", "_");
+                    email = fullName + "@facebook.com";
+                    ViewBag.FBemail = email;
+                }
+            }
+            catch (Exception ex)
+            {
+                //not a facebook user
+            }
+
+
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
@@ -409,12 +455,38 @@ namespace SpotrBeta.Controllers
                 string firstName = fullName.Substring(0, space);
                 string lastName = fullName.Substring(space);
 
-                //CDC not working with basic permissions?!?
-                //var email = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+                //CDC - PROBLEM: if user has not confirmed email address, the value will be null here no matter what
+                //so we will use their facebook email which is userName@facebook.com
+
+                bool canGetEmail = false;
+                
+                try
+                { 
+                    var testEmail = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+                    canGetEmail = true;
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                string email;
+                if (canGetEmail)
+                {
+                    email = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+                    ViewBag.FBemail = email;
+                }
+                else
+                {
+                    fullName = fullName.Replace(" ", "_");
+                    email = fullName + "@facebook.com";
+                    
+                }
+                //email = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
                 //var firstName = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == "urn:facebook:first_name").Value;
                 //var lastName = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == "urn:facebook:last_name").Value;
                 //var country = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == "urn:facebook:country").Value;
-                
+
                 var user = new ApplicationUser { UserName = fullName, Email = model.Email};
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
@@ -426,7 +498,7 @@ namespace SpotrBeta.Controllers
                     {
                         FirstName = firstName,
                         LastName = lastName,
-                        Email = model.Email,
+                        Email = email,
                         Age = model.Age,
                         Weight = model.Weight,
                         GoalWeight = model.GoalWeight,

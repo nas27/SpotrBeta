@@ -21,8 +21,10 @@ namespace SpotrBeta.Controllers
             try
             {
                 User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
-                var tmp = User.Identity.Name.Split(' ')[0];
+                var tmp = User.Identity.Name.Split('_')[0];
                 User currentFBUser = db.Users.Where(x => x.FirstName == tmp).FirstOrDefault();
+                //CDC problem with this code - we need first and last name..... ex. for "chris" we have multiple matches
+                //Fix this soon, find out if you can do 2 linq expressions for FName and LName and put them together with "&&"
                 if (currentUser != null)
                 {
                     ViewBag.CurrentUserId = currentUser.Id;
@@ -98,7 +100,7 @@ namespace SpotrBeta.Controllers
 
 
                 User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
-                var tmp = User.Identity.Name.Split(' ')[0];
+                var tmp = User.Identity.Name.Split('_')[0];
                 User currentFBUser = db.Users.Where(x => x.FirstName == tmp).FirstOrDefault();
                 if (currentUser != null)
                 {
@@ -124,7 +126,7 @@ namespace SpotrBeta.Controllers
         public ActionResult Follow(string followed, int trainerNum)
         {
             User currentUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
-            var tmp = User.Identity.Name.Split(' ')[0];
+            var tmp = User.Identity.Name.Split('_')[0];
             User currentFBUser = db.Users.Where(x => x.FirstName == tmp).FirstOrDefault();
 
             if (currentUser == null)
