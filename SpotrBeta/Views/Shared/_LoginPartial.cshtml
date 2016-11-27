@@ -10,7 +10,7 @@
 
         <li>
            
-            @Html.ActionLink("Welcome, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink("Welcome, " + User.Identity.GetUserName().Replace("_"," ") + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Sign Out</a></li>
     </ul>
