@@ -16,31 +16,19 @@
 
 <div class="alert">@Html.Partial("_LoginPartial")</div>
 
-
-    
-<!-- AddToAny BEGIN -->
-<!--<div class="a2a_kit a2a_kit_size_48 a2a_default_style">-->
-    <!--<a class="a2a_dd" href="https://www.addtoany.com/share"></a>-->
-    <!--<a class="a2a_button_facebook"></a>-->
-    <!--<a class="a2a_button_twitter"></a>-->
-    <!--<a class="a2a_button_google_plus"></a>-->
-<!--</div>-->
-<!--<script async src="https://static.addtoany.com/menu/page.js"></script>-->
-<!-- AddToAny END -->
 <br/>
 
 <!--<a href="http://twitter.com/?status=Hey+everyone+I+am+%23social+%23media+%23share+%23spotr+%23workout+http://bit.ly/8504xO+from+@("@")spotr+%23training+%23regiment"><img src="https://static.addtoany.com/images/blog/tweet-button-2015.png" border="0" /></a>-->
 
 <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="Hi I&#39;m using spotr" data-url="http://nastasia-001-site1.htempurl.com/" data-via="spotr" data-hashtags="training" data-lang="en" data-show-count="false">Tweet</a>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script> 
 <br/>
-
-<a href="http://www.facebook.com/share.php?u=http://nastasia-001-site1.htempurl.com"><img src="http://files.hostgator.co.in/hostgator254362/image/facebook-share-button.png" border="0" /></a>
-
+<a href="http://www.facebook.com/share.php?u=http://nastasia-001-site1.htempurl.com"><img src="https://sqsocialstrategiescom.files.wordpress.com/2015/11/1420214354741513.jpg" width="90" height="35" border="0"/></a>
+<br />
 <div class="container">
     <br>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
+        <!-- Map to imgs -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -48,7 +36,7 @@
             <li data-target="#myCarousel" data-slide-to="3"></li>
             <li data-target="#myCarousel" data-slide-to="4"></li>
         </ol>
-        <!-- Image Slide Wrapper -->
+        <!-- image transition wrapper -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
                 <img src="~/Images/holding_phone.jpg" alt="Lifting" width="350" height="270">
@@ -89,9 +77,6 @@
 }
 
 
-
-
-
 <div class="jumbotron">
     @if (User.Identity.IsAuthenticated && userFollowed != null)
     {
@@ -104,22 +89,25 @@
                 if (follower.UserId == userInfo.Id)
                 {
 
-                <section><span class="glyphicon glyphicon-user"></span> <strong>@userInfo.FirstName @userInfo.LastName</strong> has posted the workout:</section>
-                
-                <div class="form-group">
-                    <form action="/Home/UpVote" method="post">
-                        <input style="display:none" type="number" value="@userInfo.Id" name="id" />
-                        <input type="submit" value="UpVote" />
-                    </form>
-                </div>
+                <div><span class="glyphicon glyphicon-user"></span> <strong>@userInfo.FirstName @userInfo.LastName</strong> posted the workout(s):</div>
+
+
 
                     foreach (var item in allWorkouts)
                     {
 
                         if (item.User_Id == userInfo.Id)
                         {
-
-                        <div class="h5"><p class="badge">@item.Name</p><sub>@item.DateCreated</sub></div>
+                            <div class="form-group">
+                                <form action="/Home/UpVote" method="post">
+                                    <input style="display:none" type="number" value="@userInfo.Id" name="id" />
+                                    <!--<input type="submit" id="glyphicon glyphicon-chevron-up" value="+1" />-->
+                                    <button type="submit" class="btn btn-info" value="submit"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                                </form>
+                            </div>
+                        <div class="h5"><p class="badge">@item.Name</p>
+    
+                        <sub>@item.DateCreated</sub></div>
                         int counter = 0;
                         foreach (var exItem in allExercises)
                         {
