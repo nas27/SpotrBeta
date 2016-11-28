@@ -30,6 +30,7 @@ namespace SpotrBeta.Controllers
                     ViewBag.CurrentUserId = currentUser.Id;
                     ViewBag.Weight = currentUser.Weight;
                     ViewBag.Height = currentUser.Height;
+                    ViewBag.Rating = currentUser.Rating;
                     return View(currentUser);
                 }
                 else if (currentFBUser != null)
@@ -135,10 +136,7 @@ namespace SpotrBeta.Controllers
                 {
 
                     Follower temp = new Follower();
-                    //Random r = new Random();
-                    //int rInt = r.Next(0, 100);
 
-                    //temp.ID = temp.ID + r.Next(0, 9999);
 
                     //see if this id exists in the database - if yes, we must select a new one 
                     do
@@ -193,10 +191,7 @@ namespace SpotrBeta.Controllers
                 {
 
                     Follower temp = new Follower();
-                    //Random r = new Random();
-                    //int rInt = r.Next(0, 100);
-
-                    //temp.ID = temp.ID + r.Next(0, 9999);
+    
 
                     //see if this id exists in the database - if yes, we must select a new one 
                     do

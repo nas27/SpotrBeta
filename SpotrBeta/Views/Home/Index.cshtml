@@ -5,6 +5,7 @@
     var allWorkouts = ViewBag.AllWorkouts;
     var allUsers = ViewBag.AllUsers;
     var allExercises = ViewBag.AllExercises;
+    var rating = ViewBag.Rating;
     var weight = ViewBag.Weight;
     var height = ViewBag.Height;
     var bmi = (weight/height)/height;
@@ -18,13 +19,19 @@
 
 <br/>
 
-<!--<a href="http://twitter.com/?status=Hey+everyone+I+am+%23social+%23media+%23share+%23spotr+%23workout+http://bit.ly/8504xO+from+@("@")spotr+%23training+%23regiment"><img src="https://static.addtoany.com/images/blog/tweet-button-2015.png" border="0" /></a>-->
+
 
 <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="Hi I&#39;m using spotr" data-url="http://nastasia-001-site1.htempurl.com/" data-via="spotr" data-hashtags="training" data-lang="en" data-show-count="false">Tweet</a>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script> 
 <br/>
 <a href="http://www.facebook.com/share.php?u=http://nastasia-001-site1.htempurl.com"><img src="https://sqsocialstrategiescom.files.wordpress.com/2015/11/1420214354741513.jpg" width="90" height="35" border="0"/></a>
 <br />
+<!-- Head/before body closing -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<!-- Renders the google+ share button -->
+<div class="g-plus" data-action="share" data-height="24" data-href="http://nastasia-001-site1.htempurl.com" data-text="Hello Cruel World"></div>
+
 <div class="container">
     <br>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -80,7 +87,7 @@
 <div class="jumbotron">
     @if (User.Identity.IsAuthenticated && userFollowed != null)
     {
-       
+
         foreach (var follower in userFollowed)
         {
 
@@ -91,7 +98,7 @@
 
                 <div><span class="glyphicon glyphicon-user"></span> <strong>@userInfo.FirstName @userInfo.LastName</strong> posted the workout(s):</div>
 
-
+                
 
                     foreach (var item in allWorkouts)
                     {
@@ -106,7 +113,7 @@
                                 </form>
                             </div>
                         <div class="h5"><p class="badge">@item.Name</p>
-    
+
                         <sub>@item.DateCreated</sub></div>
                         int counter = 0;
                         foreach (var exItem in allExercises)
@@ -114,7 +121,7 @@
 
                             if (item.Id == exItem.Workout_Id)
                             {
-                                counter += 1;   
+                                counter += 1;
                                 string exerciseName = "Exercise " + counter;
                                 <i>@Html.ActionLink(exerciseName, "Details", "Exercis", new { id = exItem.Id }, null)</i>
                                 }
@@ -124,7 +131,7 @@
 
                         }
                     }
-                
+
                 }
             }
         }
@@ -137,4 +144,4 @@
 
 
 
-    
+
