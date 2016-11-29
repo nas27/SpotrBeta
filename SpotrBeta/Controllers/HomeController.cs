@@ -52,9 +52,11 @@ namespace SpotrBeta.Controllers
             {
                 ex.ToString();
             }
-                
-         
-            
+
+
+            var currUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+
+            ViewBag.userRating = currUser.Rating;
             
             return View();
         }

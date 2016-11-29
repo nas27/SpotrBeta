@@ -77,9 +77,11 @@ namespace SpotrBeta.Controllers
 
                     try
                     {
+                        //add two lists together, search for rating
                         short num = System.Convert.ToInt16(id);
                         ViewBag.AllTrainers.AddRange(db.Users.Where(x => x.Rating >= num).ToList());
                     }
+                    //make sure it is a number not string
                     catch (FormatException error)
                     {
                         ViewBag.AllTrainers = db.Users.Where(x => x.FirstName.Contains(id)).ToList();

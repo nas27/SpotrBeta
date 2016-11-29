@@ -5,10 +5,12 @@
     var allWorkouts = ViewBag.AllWorkouts;
     var allUsers = ViewBag.AllUsers;
     var allExercises = ViewBag.AllExercises;
-    var rating = ViewBag.Rating;
+    var rating = ViewBag.userRating;
     var weight = ViewBag.Weight;
     var height = ViewBag.Height;
     var bmi = (weight/height)/height;
+
+    
 }
 
 <div class="jumbotron">
@@ -21,7 +23,7 @@
 
 
 
-<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="Hi I&#39;m using spotr" data-url="http://nastasia-001-site1.htempurl.com/" data-via="spotr" data-hashtags="training" data-lang="en" data-show-count="false">Tweet</a>
+<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="Hi I&#39;m using spotr with a rating of @rating" data-url="http://nastasia-001-site1.htempurl.com/" data-via="spotr" data-hashtags="training" data-lang="en" data-show-count="false">Tweet</a>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script> 
 <br/>
 <a href="http://www.facebook.com/share.php?u=http://nastasia-001-site1.htempurl.com"><img src="https://sqsocialstrategiescom.files.wordpress.com/2015/11/1420214354741513.jpg" width="90" height="35" border="0"/></a>
