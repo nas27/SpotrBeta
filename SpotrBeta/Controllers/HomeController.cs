@@ -30,6 +30,7 @@ namespace SpotrBeta.Controllers
                     ViewBag.AllUsers = db.Users.ToList();
                     ViewBag.AllExercises = db.Exercises.ToList();
                     ViewBag.AllWorkouts = db.Workouts.ToList();
+                    ViewBag.userRating = currentUser.Rating;
 
                 }
                 else if (currentFBUser != null)
@@ -38,6 +39,7 @@ namespace SpotrBeta.Controllers
                     ViewBag.AllUsers = db.Users.ToList();
                     ViewBag.AllExercises = db.Exercises.ToList();
                     ViewBag.AllWorkouts = db.Workouts.ToList();
+                    ViewBag.userRating = currentFBUser.Rating;
                 }
                 else
                 {
@@ -45,18 +47,12 @@ namespace SpotrBeta.Controllers
                 }
                 
                 
-
-
             }   
             catch(Exception ex)
             {
                 ex.ToString();
             }
 
-
-            var currUser = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
-
-            ViewBag.userRating = currUser.Rating;
             
             return View();
         }
