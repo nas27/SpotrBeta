@@ -74,6 +74,7 @@ namespace SpotrBeta.Controllers
                     
                     ViewBag.AllTrainers = db.Users.Where(x => x.FirstName.Contains(id)).ToList();
                     List<User> lt = ViewBag.AllTrainers;
+                    
 
                     try
                     {
@@ -85,7 +86,8 @@ namespace SpotrBeta.Controllers
                     catch (FormatException error)
                     {
                         ViewBag.AllTrainers = db.Users.Where(x => x.FirstName.Contains(id)).ToList();
-                        
+                        ViewBag.AllTrainers.AddRange(db.Users.Where(x => x.Specialty.Trim().ToUpper().Contains(id.Trim().ToUpper())).OrderByDescending(x => x.Rating).ToList());
+
                     }
 
                     if (id.Contains("Top 3"))
@@ -93,10 +95,10 @@ namespace SpotrBeta.Controllers
                         ViewBag.AllTrainers = db.Users.OrderByDescending(x => x.Rating).Take(3).ToList();
 
                     }
-                    if (SpecialtyID == "SpecialtySearch")
-                    {
-                        ViewBag.AllTrainers = db.Users.Where(x => x.Specialty.Trim().ToUpper().Contains(id.Trim().ToUpper())).ToList();
-                    }
+                    //if (SpecialtyID == "SpecialtySearch")
+                    //{
+                    //    ViewBag.AllTrainers = db.Users.Where(x => x.Specialty.Trim().ToUpper().Contains(id.Trim().ToUpper())).ToList();
+                    //}
                 }
 
                 

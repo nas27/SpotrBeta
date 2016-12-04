@@ -16,8 +16,7 @@ using (Html.BeginForm("Follow", "Users", FormMethod.Get))
         Enter: @Html.TextBox("id")
     </strong><input type="submit" class="btn-toolbar" value="Search" />
 
-
-    }
+}
 
         <div class="form-group">
             
@@ -30,7 +29,7 @@ using (Html.BeginForm("Follow", "Users", FormMethod.Get))
             </form>
         </div>
 
-        <div class="form-group">           
+        @*<div class="form-group">           
             <form action="/Users/Follow" method="get">
                 <strong>
                     Search by Specialty:
@@ -39,7 +38,7 @@ using (Html.BeginForm("Follow", "Users", FormMethod.Get))
                 <input type="hidden" name="SpecialtyID" id="SpecialtyID" value="SpecialtySearch"  />               
                 <input type="submit" name ="id" id="id" value="Search" />
             </form>
-        </div>
+        </div>*@
 
 
 
